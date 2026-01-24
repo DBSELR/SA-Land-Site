@@ -11,25 +11,202 @@ const RegistrationPage = () => {
         feeType: 'registration' // Default to registration
     });
 
-    const [courseFee, setCourseFee] = useState(0); // Placeholder for future API
-
     // State for animation triggering
     const [loaded, setLoaded] = useState(false);
-    const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         setLoaded(true);
-
-        // Fetch courses from API
-        fetch('https://localhost:7045/api/Student/GetLandCourses')
-            .then(response => response.json())
-            .then(data => {
-                setCourses(data);
-            })
-            .catch(error => {
-                console.error('Error fetching courses:', error);
-            });
     }, []);
+
+    const courses = [
+        {
+            "programmeId": 168,
+            "programmeCode": "C10",
+            "programmeName": "Accounts - Tally Prime, Microsoft Excel, GST & Taxation with Returns",
+            "fee": 3500.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 0.00
+        },
+        {
+            "programmeId": 162,
+            "programmeCode": "C04",
+            "programmeName": "Artificial Intelligence Tools",
+            "fee": 3500.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 0.00
+        },
+        {
+            "programmeId": 165,
+            "programmeCode": "C07",
+            "programmeName": "Bioinformatics",
+            "fee": 3500.00,
+            "studentCount": 1,
+            "earlyBirdStudents": 1,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 2800.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 2800.00
+        },
+        {
+            "programmeId": 163,
+            "programmeCode": "C05",
+            "programmeName": "Content Development",
+            "fee": 3500.00,
+            "studentCount": 1,
+            "earlyBirdStudents": 1,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 2800.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 2800.00
+        },
+        {
+            "programmeId": 164,
+            "programmeCode": "C06",
+            "programmeName": "Digital Marketing Using Canva",
+            "fee": 3500.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 0.00
+        },
+        {
+            "programmeId": 166,
+            "programmeCode": "C08",
+            "programmeName": "Fisheries Science and Aquaculture Management",
+            "fee": 3500.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 0.00
+        },
+        {
+            "programmeId": 167,
+            "programmeCode": "C09",
+            "programmeName": "Food Security and Nutrition",
+            "fee": 3500.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 0.00
+        },
+        {
+            "programmeId": 169,
+            "programmeCode": "C11",
+            "programmeName": "Medical Coding",
+            "fee": 1000.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 800.00,
+            "runningOfferDiscountAmount": 200.00,
+            "totalCollectedAmount": 0.00
+        },
+        {
+            "programmeId": 160,
+            "programmeCode": "C02",
+            "programmeName": "Mobile App Development",
+            "fee": 1000.00,
+            "studentCount": 1,
+            "earlyBirdStudents": 1,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 800.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 800.00,
+            "runningOfferDiscountAmount": 200.00,
+            "totalCollectedAmount": 800.00
+        },
+        {
+            "programmeId": 161,
+            "programmeCode": "C03",
+            "programmeName": "Python Programming",
+            "fee": 3500.00,
+            "studentCount": 1,
+            "earlyBirdStudents": 1,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 2800.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 2800.00,
+            "runningOfferDiscountAmount": 700.00,
+            "totalCollectedAmount": 2800.00
+        },
+        {
+            "programmeId": 170,
+            "programmeCode": "C01",
+            "programmeName": "Web Technology",
+            "fee": 1000.00,
+            "studentCount": 0,
+            "earlyBirdStudents": 0,
+            "valueSaverStudents": 0,
+            "standardStudents": 0,
+            "earlyBirdAmount": 0.00,
+            "valueSaverAmount": 0.00,
+            "standardAmount": 0.00,
+            "runningOffer": "EARLY BIRD",
+            "offerFee": 800.00,
+            "runningOfferDiscountAmount": 200.00,
+            "totalCollectedAmount": 0.00
+        }
+    ];
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -90,6 +267,8 @@ const RegistrationPage = () => {
                 alert("An error occurred. Please try again.");
             });
     };
+
+    const selectedCourse = courses.find(c => c.programmeName === formData.course);
 
     return (
         <div className="gk-reg-container">
@@ -212,12 +391,7 @@ const RegistrationPage = () => {
                                 <select
                                     name="course"
                                     value={formData.course}
-                                    onChange={(e) => {
-                                        // Update course fee when course changes (mock logic for now)
-                                        const selected = courses.find(c => c.programmeName === e.target.value);
-                                        setCourseFee(selected ? selected.fee : 0);
-                                        setFormData({ ...formData, course: e.target.value });
-                                    }}
+                                    onChange={handleChange}
                                     required
                                 >
                                     <option value="" disabled>Select your Course</option>
@@ -265,10 +439,19 @@ const RegistrationPage = () => {
                                         <div className="gk-radio-circle">
                                             {formData.feeType === 'course' && <div className="gk-radio-dot"></div>}
                                         </div>
-                                        <span>Course Fee</span>
+                                        <span style={{ textTransform: 'uppercase' }}>
+                                            {selectedCourse ? selectedCourse.runningOffer : 'Course Fee'}
+                                        </span>
                                     </div>
                                     <div className="gk-fee-amount">
-                                        {courseFee > 0 ? `Rs. ${courseFee}` : 'Select Course'}
+                                        {selectedCourse ? (
+                                            <>
+                                                Rs. {selectedCourse.offerFee}
+                                                <span style={{ textDecoration: 'line-through', fontSize: '0.8em', color: '#888', marginLeft: '8px' }}>
+                                                    Rs. {selectedCourse.fee}
+                                                </span>
+                                            </>
+                                        ) : 'Select Course'}
                                     </div>
                                     <div className="gk-fee-desc">
                                         Full course access
