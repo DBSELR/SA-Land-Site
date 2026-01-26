@@ -31,7 +31,7 @@ const ContactUsPage = () => {
         submitToGoogleSheets(payload);
 
         try {
-            await axios.post('https://api.skillascent.in/api/BulkSms/mainleadsave', payload, {
+            await axios.post('https://localhost:7045/api/BulkSms/mainleadsave', payload, {
                 headers: { 'Content-Type': 'application/json' }
             });
             setStatus('success');
@@ -87,19 +87,19 @@ const ContactUsPage = () => {
 
                         <div className="gk-info-details">
                             {/* Phone Icon & Link */}
-                            <a href="tel:+919394322302" className="gk-detail-item">
+                            <a href="tel:+8297222301" className="gk-detail-item">
                                 <div className="gk-icon-circle">
                                     <i className="fa-solid fa-phone"></i>
                                 </div>
-                                <span>+91-93943 22302</span>
+                                <span>+91-8297222301</span>
                             </a>
 
                             {/* Email Icon & Link */}
-                            <a href="mailto:skillascent@dbasesolutions.in" className="gk-detail-item">
+                            <a href="mailto:info@skillascent.in" className="gk-detail-item">
                                 <div className="gk-icon-circle">
                                     <i className="fa-solid fa-envelope"></i>
                                 </div>
-                                <span>skillascent@dbasesolutions.in</span>
+                                <span>info@skillascent.in</span>
                             </a>
 
                             {/* Address Icon & Text */}

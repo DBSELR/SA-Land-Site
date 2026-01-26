@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { coursesData, categories } from './courses/coursesData';
 
 const RegistrationPage = () => {
     const [formData, setFormData] = useState({
@@ -8,36 +7,80 @@ const RegistrationPage = () => {
         email: '',
         phone: '',
         course: '',
-        feeType: 'registration' // Default to registration
+        feeType: 'registration', // Default to registration
     });
 
-    // State for animation triggering
-    const [loaded, setLoaded] = useState(false);
-
+    const [extraDiscount, setExtraDiscount] = useState(0); // Extra discount for existing mobile
+    const [loaded, setLoaded] = useState(false); // Animation trigger
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         setLoaded(true);
-
-        // Fetch courses from API
-        fetch('https://localhost:7045/api/student/LandingFeeCalculation')
-            .then(response => response.json())
-            .then(data => {
-                setCourses(data);
-            })
-            .catch(error => {
-                console.error('Error fetching courses:', error);
-            });
+        // Fetch courses initially without mobile
+        fetchCourses();
     }, []);
+
+    // Fetch courses function with optional mobile number
+    const fetchCourses = async (mobileNo = null) => {
+        try {
+            const url = mobileNo
+                ? `https://localhost:7045/api/student/LandingFeeCalculation?mobileNo=${mobileNo}`
+                : 'https://localhost:7045/api/student/LandingFeeCalculation';
+            const res = await fetch(url);
+            const data = await res.json();
+            setCourses(data);
+        } catch (err) {
+            console.error('Error fetching courses:', err);
+        }
+    };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // Handle phone number input and check for extra discount
+  // Handle phone number input and check for extra discount
+const handlePhoneChange = async (e) => {
+    const phone = e.target.value;
 
-        // Find the selected course object to get the ID
+    // Reset all fields except phone when phone changes
+    setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: phone,
+        course: '',
+        feeType: 'registration',
+    });
+
+    if (!phone) {
+        setExtraDiscount(0);
+        fetchCourses();
+        return;
+    }
+
+    try {
+        // Get extra discount if already applied
+        const res = await fetch(`https://localhost:7045/api/student/GetAppliedDiscount/${phone}`);
+        const discountData = await res.json();
+
+        if (discountData && discountData.DiscountPercent) {
+            setExtraDiscount(Number(discountData.DiscountPercent));
+        } else {
+            setExtraDiscount(0);
+        }
+
+        // Reload courses with mobile to apply extra discount
+        fetchCourses(phone);
+    } catch (err) {
+        console.error('Error fetching extra discount:', err);
+        setExtraDiscount(0);
+    }
+};
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const selectedCourse = courses.find(c => c.programmeName === formData.course);
         const programmeId = selectedCourse ? selectedCourse.programmeId : 0;
 
@@ -49,73 +92,70 @@ const RegistrationPage = () => {
             programmeId: programmeId
         };
 
-        fetch('https://localhost:7045/api/student/Landingregister', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        })
-            .then(async response => {
-                if (response.ok) {
-                    alert("Registration Successful!");
-                    setFormData({
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        phone: '',
-                        course: '',
-                    });
-                } else {
-                    const errorText = await response.text();
-                    try {
-                        // Try to parse JSON error to be more helpful
-                        const errorObj = JSON.parse(errorText);
-                        // If errors object exists, format it nicely
-                        if (errorObj.errors) {
-                            const messages = Object.values(errorObj.errors).flat().join('\n');
-                            alert("Registration Failed:\n" + messages);
-                        } else {
-                            alert("Registration Failed: " + (errorObj.title || errorText));
-                        }
-                    } catch (e) {
-                        alert("Registration Failed: " + errorText);
-                    }
-                    console.error("Registration failed:", errorText);
-                }
-            })
-            .catch(error => {
-                console.error('Error submitting form:', error);
-                alert("An error occurred. Please try again.");
+        try {
+            const res = await fetch('https://localhost:7045/api/student/Landingregister', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
+
+            if (res.ok) {
+                alert('Registration Successful!');
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: '',
+                    course: '',
+                    feeType: 'registration',
+                });
+                setExtraDiscount(0);
+                fetchCourses(); // Reset courses
+            } else {
+                const errorText = await res.text();
+                try {
+                    const errorObj = JSON.parse(errorText);
+                    if (errorObj.errors) {
+                        const messages = Object.values(errorObj.errors).flat().join('\n');
+                        alert('Registration Failed:\n' + messages);
+                    } else {
+                        alert('Registration Failed: ' + (errorObj.title || errorText));
+                    }
+                } catch {
+                    alert('Registration Failed: ' + errorText);
+                }
+            }
+        } catch (err) {
+            console.error('Error submitting form:', err);
+            alert('An error occurred. Please try again.');
+        }
     };
 
     const selectedCourse = courses.find(c => c.programmeName === formData.course);
 
+    // Calculate display fee with extra discount
+    const displayFee = selectedCourse
+        ? (selectedCourse.offerFee * (1 - extraDiscount / 100)).toFixed(2)
+        : 'Select Course';
+
     return (
         <div className="gk-reg-container">
-
             <div className={`gk-reg-wrapper ${loaded ? 'loaded' : ''}`}>
-
                 {/* Left Side: Visual & Brand */}
                 <div className="gk-reg-visual">
                     <div className="gk-visual-decor gk-blob-1"></div>
                     <div className="gk-visual-decor gk-blob-2"></div>
-
                     <div className="gk-visual-content">
                         <div className="gk-brand-tag">
                             <img src="/logo.jpg" alt="Skill Ascent" className="gk-reg-logo" />
                         </div>
-
                         <h1 className="gk-visual-title">
                             Start your <br />
                             <span className="gk-text-highlight">Learning Journey.</span>
                         </h1>
-
                         <p className="gk-visual-desc">
                             Join a community of 10,000+ learners and master the skills top companies are hiring for today.
                         </p>
-
                         <div className="gk-features-list">
                             <div className="gk-feat-item">
                                 <i className="fa-solid fa-circle-check"></i> <span>Life-time Access</span>
@@ -134,12 +174,10 @@ const RegistrationPage = () => {
                 <div className="gk-reg-form-section">
                     <div className="gk-form-header">
                         <h2>Create Account</h2>
-                        {/* <p>Already have an account? <a href="/login">Log in</a></p> */}
                     </div>
 
                     <form onSubmit={handleSubmit} className="gk-reg-form">
-
-                        {/* Phone & Email Grid */}
+                        {/* Phone & Email */}
                         <div className="gk-form-row">
                             <div className="gk-input-field">
                                 <label>Phone Number</label>
@@ -150,7 +188,7 @@ const RegistrationPage = () => {
                                         name="phone"
                                         placeholder="Mobile Number"
                                         value={formData.phone}
-                                        onChange={handleChange}
+                                        onChange={handlePhoneChange}
                                         required
                                     />
                                 </div>
@@ -172,7 +210,7 @@ const RegistrationPage = () => {
                             </div>
                         </div>
 
-                        {/* Name Fields Row */}
+                        {/* Name Fields */}
                         <div className="gk-form-row">
                             <div className="gk-input-field">
                                 <label>First Name</label>
@@ -217,8 +255,7 @@ const RegistrationPage = () => {
                                     required
                                 >
                                     <option value="" disabled>Select your Course</option>
-
-                                    {courses.map((course) => (
+                                    {courses.map(course => (
                                         <option key={course.programmeId} value={course.programmeName}>
                                             {course.programmeName}
                                         </option>
@@ -228,12 +265,11 @@ const RegistrationPage = () => {
                             </div>
                         </div>
 
-                        {/* Fee Selection Section */}
+                        {/* Fee Cards */}
                         <div className="gk-fee-selection">
                             <label className="gk-fee-label">Select Payment Option</label>
-
                             <div className="gk-fee-cards">
-                                {/* Registration Fee Card */}
+                                {/* Registration Fee */}
                                 <div
                                     className={`gk-fee-card ${formData.feeType === 'registration' ? 'selected' : ''}`}
                                     onClick={() => setFormData({ ...formData, feeType: 'registration' })}
@@ -244,15 +280,11 @@ const RegistrationPage = () => {
                                         </div>
                                         <span>Registration Fee</span>
                                     </div>
-                                    <div className="gk-fee-amount">
-                                        Rs. 999
-                                    </div>
-                                    <div className="gk-fee-desc">
-                                        Book your seat
-                                    </div>
+                                    <div className="gk-fee-amount">Rs. 999</div>
+                                    <div className="gk-fee-desc">Book your seat</div>
                                 </div>
 
-                                {/* Course Fee Card */}
+                                {/* Course Fee */}
                                 <div
                                     className={`gk-fee-card ${formData.feeType === 'course' ? 'selected' : ''}`}
                                     onClick={() => setFormData({ ...formData, feeType: 'course' })}
@@ -268,16 +300,14 @@ const RegistrationPage = () => {
                                     <div className="gk-fee-amount">
                                         {selectedCourse ? (
                                             <>
-                                                Rs. {selectedCourse.offerFee}
+                                                Rs. {displayFee}
                                                 <span style={{ textDecoration: 'line-through', fontSize: '0.8em', color: '#888', marginLeft: '8px' }}>
                                                     Rs. {selectedCourse.fee}
                                                 </span>
                                             </>
                                         ) : 'Select Course'}
                                     </div>
-                                    <div className="gk-fee-desc">
-                                        Full course access
-                                    </div>
+                                    <div className="gk-fee-desc">Full course access</div>
                                 </div>
                             </div>
                         </div>
@@ -285,7 +315,6 @@ const RegistrationPage = () => {
                         <button type="submit" className="gk-reg-btn">
                             Register Now <i className="fa-solid fa-arrow-right-long"></i>
                         </button>
-
                     </form>
                 </div>
             </div>

@@ -32,7 +32,7 @@ const BrochureModal = ({ isOpen, courseTitle, onDownload, onClose }) => {
         submitToGoogleSheets(payload);
 
         try {
-            await axios.post('https://api.skillascent.in/api/BulkSms/Broucherleadsave', payload, {
+            await axios.post('https://localhost:7045/api/BulkSms/Broucherleadsave', payload, {
                 headers: { 'Content-Type': 'application/json' }
             });
 
