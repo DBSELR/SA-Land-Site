@@ -8,7 +8,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import CancellationPolicy from "./pages/CancellationPolicy";
 import TermsConditions from "./pages/TermsConditions";
-import WhatsAppButton from "./components/WhatsAppButton";
+// import WhatsAppButton from "./components/WhatsAppButton";
 import CourseDetail from "./pages/CourseDetail";
 
 
@@ -28,7 +28,7 @@ function App() {
           <Route path="/terms-conditions" element={<TermsConditions />} />
         </Routes>
       </main>
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
       <Footer />
     </Router>
   );

@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
                             Andhra Pradesh – 534001, India
                         </p>
                         <p style={{ marginTop: '0.5rem' }}>
-                            📞 9394322301 &nbsp; | &nbsp; 📧 skillascent@dbasesolutions.in
+                            📞 8297222303 &nbsp; | &nbsp; 📧 skillascent@dbasesolutions.in
                         </p>
                     </div>
                 </div>
@@ -214,7 +214,7 @@ const PrivacyPolicy = () => {
                             <p style={{ margin: '0.5rem 0' }}>
                                 📍 Address: D.NO.16-58/33, Sai Sadan, Sri Sairam Nagar, Hanuman Nagar, Eluru, West Godavari, Andhra Pradesh – 534001, India
                             </p>
-                            <p style={{ margin: '0.5rem 0' }}>📞 Phone: 9394322301</p>
+                            <p style={{ margin: '0.5rem 0' }}>📞 Phone: 8297222303</p>
                             <p style={{ margin: '0.5rem 0' }}>📧 Email: skillascent@dbasesolutions.in</p>
                         </div>
                     </section>

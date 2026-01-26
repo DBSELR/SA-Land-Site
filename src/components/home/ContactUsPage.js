@@ -87,11 +87,11 @@ const ContactUsPage = () => {
 
                         <div className="gk-info-details">
                             {/* Phone Icon & Link */}
-                            <a href="tel:+8297222301" className="gk-detail-item">
+                            <a href="tel:+8297222303" className="gk-detail-item">
                                 <div className="gk-icon-circle">
                                     <i className="fa-solid fa-phone"></i>
                                 </div>
-                                <span>+91-8297222301</span>
+                                <span>+91-8297222303</span>
                             </a>
 
                             {/* Email Icon & Link */}

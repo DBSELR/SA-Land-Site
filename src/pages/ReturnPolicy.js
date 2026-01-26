@@ -10,7 +10,7 @@ const ReturnPolicy = () => {
                     <h1>Refund, Return, Exchange & Cancellation Policy</h1>
                     <div className="rp-contact-info" style={{ marginTop: '15px', color: '#64748b' }}>
                         <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', fontSize: '1.1rem' }}>
-                            <span><i className="fa-solid fa-phone" style={{ marginRight: '8px', color: '#ea580c' }}></i> 9394322301</span>
+                            <span><i className="fa-solid fa-phone" style={{ marginRight: '8px', color: '#ea580c' }}></i> 8297222303</span>
                             <span><i className="fa-solid fa-envelope" style={{ marginRight: '8px', color: '#ea580c' }}></i> support@skillascent.com</span>
                         </p>
                     </div>

@@ -39,44 +39,44 @@ const RegistrationPage = () => {
     };
 
     // Handle phone number input and check for extra discount
-  // Handle phone number input and check for extra discount
-const handlePhoneChange = async (e) => {
-    const phone = e.target.value;
+    // Handle phone number input and check for extra discount
+    const handlePhoneChange = async (e) => {
+        const phone = e.target.value;
 
-    // Reset all fields except phone when phone changes
-    setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: phone,
-        course: '',
-        feeType: 'registration',
-    });
+        // Reset all fields except phone when phone changes
+        setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: phone,
+            course: '',
+            feeType: 'registration',
+        });
 
-    if (!phone) {
-        setExtraDiscount(0);
-        fetchCourses();
-        return;
-    }
-
-    try {
-        // Get extra discount if already applied
-        const res = await fetch(`https://localhost:7045/api/student/GetAppliedDiscount/${phone}`);
-        const discountData = await res.json();
-
-        if (discountData && discountData.DiscountPercent) {
-            setExtraDiscount(Number(discountData.DiscountPercent));
-        } else {
+        if (!phone) {
             setExtraDiscount(0);
+            fetchCourses();
+            return;
         }
 
-        // Reload courses with mobile to apply extra discount
-        fetchCourses(phone);
-    } catch (err) {
-        console.error('Error fetching extra discount:', err);
-        setExtraDiscount(0);
-    }
-};
+        try {
+            // Get extra discount if already applied
+            const res = await fetch(`https://localhost:7045/api/student/GetAppliedDiscount/${phone}`);
+            const discountData = await res.json();
+
+            if (discountData && discountData.DiscountPercent) {
+                setExtraDiscount(Number(discountData.DiscountPercent));
+            } else {
+                setExtraDiscount(0);
+            }
+
+            // Reload courses with mobile to apply extra discount
+            fetchCourses(phone);
+        } catch (err) {
+            console.error('Error fetching extra discount:', err);
+            setExtraDiscount(0);
+        }
+    };
 
 
     const handleSubmit = async (e) => {
