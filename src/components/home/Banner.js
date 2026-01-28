@@ -17,7 +17,7 @@ const Banner = () => {
                 {/* Right: Button */}
                 <div className="banner-action">
                     <a
-                        href="https://wa.me/919394322302"
+                        href="https://wa.me/918297222303"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="banner-btn"

@@ -2269,6 +2269,7 @@ body {
 .gk-social-icons-row {
     display: flex;
     gap: 12px;
+    margin-top: 20px;
 }
 
 .gk-soc-link {

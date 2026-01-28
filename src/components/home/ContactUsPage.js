@@ -103,15 +103,41 @@ const ContactUsPage = () => {
                             </a>
 
                             {/* Address Icon & Text */}
-                            <div className="gk-detail-item">
-                                <div className="gk-icon-circle">
+                            <div className="gk-detail-item" style={{ alignItems: "flex-start" }}>
+                                <div className="gk-icon-circle" style={{ marginTop: '5px' }}>
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
-                                <span>
-                                    D BASE SOLUTIONS PRIVATE LIMITED<br /> D.NO.16-58/33, Sai Sadan,<br />
-                                    Hanuman Nagar, Eluru<br />
-                                    AP– 534001, India
-                                </span>
+                                <div className="gk-address-list" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+                                    {/* Eluru */}
+                                    <div className="gk-branch-block">
+                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Eluru (Head Office)</h5>
+                                        <p style={{ margin: 0, fontSize: '0.95rem', color: '#fff', lineHeight: '1.6' }}>
+                                            <strong>D BASE SOLUTIONS PVT LTD</strong><br />
+                                            D.NO.16-58/33, Sai Sadan, Hanuman Nagar,<br />
+                                            Eluru, AP– 534001, India
+                                        </p>
+                                    </div>
+
+                                    {/* Vijayawada */}
+                                    <div className="gk-branch-block">
+                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Vijayawada Branch</h5>
+                                        <p style={{ margin: 0, fontSize: '0.95rem', color: '#fff', lineHeight: '1.6' }}>
+                                            D.No 12-22, First Floor, Behind Alankar Bakery,<br />
+                                            Enikepadu, Vijayawada - 521108
+                                        </p>
+                                    </div>
+
+                                    {/* Hyderabad */}
+                                    <div className="gk-branch-block">
+                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Hyderabad Branch</h5>
+                                        <p style={{ margin: 0, fontSize: '0.95rem', color: '#fff', lineHeight: '1.6' }}>
+                                            Plot No. 13, Amar Co-operative Housing Society,<br />
+                                            Madhapur, Hyderabad - 500081
+                                        </p>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
@@ -177,7 +203,7 @@ const ContactUsPage = () => {
                                 <label htmlFor="message">Message *</label>
                                 <textarea
                                     id="message"
-                                    rows="5"
+                                    rows="14"
                                     placeholder="How can we help you?"
                                     required
                                     value={formData.message}
