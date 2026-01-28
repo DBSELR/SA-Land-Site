@@ -10,7 +10,7 @@ const RegistrationPage = () => {
         feeType: 'registration', // Default to registration
     });
 
-    const [extraDiscount, setExtraDiscount] = useState(0); // Extra discount for existing mobile
+   // const [extraDiscount, setExtraDiscount] = useState(0); // Extra discount for existing mobile
     const [loaded, setLoaded] = useState(false); // Animation trigger
     const [courses, setCourses] = useState([]);
 
@@ -43,41 +43,21 @@ const RegistrationPage = () => {
     const handlePhoneChange = async (e) => {
         const phone = e.target.value;
 
-        // Reset all fields except phone when phone changes
         setFormData({
             firstName: '',
             lastName: '',
             email: '',
-            phone: phone,
+            phone,
             course: '',
             feeType: 'registration',
         });
 
-        if (!phone) {
-            setExtraDiscount(0);
-            fetchCourses();
-            return;
-        }
-
-        try {
-            // Get extra discount if already applied
-            const res = await fetch(`https://localhost:7045/api/student/GetAppliedDiscount/${phone}`);
-            const discountData = await res.json();
-
-            if (discountData && discountData.DiscountPercent) {
-                setExtraDiscount(Number(discountData.DiscountPercent));
-            } else {
-                setExtraDiscount(0);
-            }
-
-            // Reload courses with mobile to apply extra discount
-            fetchCourses(phone);
-        } catch (err) {
-            console.error('Error fetching extra discount:', err);
-            setExtraDiscount(0);
+        if (phone.length === 10) {
+            await fetchCourses(phone);   // apply loyalty discount if exists
+        } else {
+            await fetchCourses(null);    // reset to base offer
         }
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -109,7 +89,7 @@ const RegistrationPage = () => {
                     course: '',
                     feeType: 'registration',
                 });
-                setExtraDiscount(0);
+              //  setExtraDiscount(0);
                 fetchCourses(); // Reset courses
             } else {
                 const errorText = await res.text();
@@ -134,8 +114,8 @@ const RegistrationPage = () => {
     const selectedCourse = courses.find(c => c.programmeName === formData.course);
 
     // Calculate display fee with extra discount
-    const displayFee = selectedCourse
-        ? (selectedCourse.offerFee * (1 - extraDiscount / 100)).toFixed(2)
+   const displayFee = selectedCourse
+        ? selectedCourse.offerFee
         : 'Select Course';
 
     return (
