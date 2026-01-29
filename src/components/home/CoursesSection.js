@@ -160,7 +160,7 @@ const CoursesSection = () => {
 
                                             if (ref) {
                                                 // Pass empty object {} as body to ensure POST headers are correct
-                                                axios.post(`https://localhost:7045/api/BulkSms/hotleadsave?ref=${encodeURIComponent(ref)}&course=${encodeURIComponent(course.title)}`, {})
+                                                axios.post(`https://api.skillascent.in/api/BulkSms/hotleadsave?ref=${encodeURIComponent(ref)}&course=${encodeURIComponent(course.title)}`, {})
                                                     .then(() => console.log(`Hot lead captured for ${course.title}`))
                                                     .catch(err => console.error("Hot lead tracking failed", err))
                                                     .finally(() => {

@@ -10,6 +10,7 @@ import CancellationPolicy from "./pages/CancellationPolicy";
 import TermsConditions from "./pages/TermsConditions";
 // import WhatsAppButton from "./components/WhatsAppButton";
 import CourseDetail from "./pages/CourseDetail";
+import PaymentResult from "./pages/PaymentResult";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/cancellation-policy" element={<CancellationPolicy />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />
+        
+        <Route path="/payment-result" element={<PaymentResult />} />
+        
         </Routes>
       </main>
       {/* <WhatsAppButton /> */}
