@@ -24,7 +24,7 @@ const Home = () => {
 
         if (ref) {
             axios.post(
-                `https://api.skillascent.in/api/BulkSms/save?ref=${encodeURIComponent(ref)}`
+                `https://localhost:7045/api/BulkSms/save?ref=${encodeURIComponent(ref)}`
             )
                 .then(() => console.log("Lead saved successfully"))
                 .catch(err => console.error("Lead tracking failed", err));

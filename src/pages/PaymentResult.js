@@ -54,7 +54,7 @@ const PaymentResult = () => {
     const fetchStatus = async () => {
       try {
         const res = await fetch(
-          `https://api.skillascent.in/api/payments/phonepe/status?merchantOrderId=${encodeURIComponent(
+          `https://localhost:7045/api/payments/phonepe/status?merchantOrderId=${encodeURIComponent(
             finalOrderId
           )}`
         );
@@ -118,7 +118,7 @@ const PaymentResult = () => {
       {/* Invoice Card – this will be printed */}
       <div id="payres-invoice-card" className="payres-card">
 
-        
+
 
         {/* Top strip */}
         <div
@@ -127,8 +127,8 @@ const PaymentResult = () => {
             (isSuccess
               ? "payres-strip-success"
               : isFailure || isError
-              ? "payres-strip-failed"
-              : "payres-strip-pending")
+                ? "payres-strip-failed"
+                : "payres-strip-pending")
           }
         />
 
@@ -149,10 +149,10 @@ const PaymentResult = () => {
               {isSuccess
                 ? "Payment Successful"
                 : isFailure
-                ? "Payment Failed"
-                : isPending
-                ? "Payment Pending"
-                : "Payment Status"}
+                  ? "Payment Failed"
+                  : isPending
+                    ? "Payment Pending"
+                    : "Payment Status"}
             </h2>
             <p className="payres-subtitle">
               {message || "Transaction details are shown below."}

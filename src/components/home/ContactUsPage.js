@@ -31,7 +31,7 @@ const ContactUsPage = () => {
         submitToGoogleSheets(payload);
 
         try {
-            await axios.post('https://api.skillascent.in/api/BulkSms/mainleadsave', payload, {
+            await axios.post('https://localhost:7045/api/BulkSms/mainleadsave', payload, {
                 headers: { 'Content-Type': 'application/json' }
             });
             setStatus('success');
