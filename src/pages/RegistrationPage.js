@@ -578,7 +578,7 @@ const RegistrationPage = () => {
                                         </div>
                                         <span>Registration Fee</span>
                                     </div>
-                                    <div className="gk-fee-amount">Rs. 999</div>
+                                    <div className="gk-fee-amount">Rs. 499</div>
                                     <div className="gk-fee-desc">Book your seat</div>
                                 </div>
 
