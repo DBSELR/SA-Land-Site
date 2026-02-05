@@ -4,7 +4,7 @@ import axios from 'axios';
 import { coursesData, categories } from '../../pages/courses/coursesData';
 
 const CoursesSection = () => {
-    const [activeTab, setActiveTab] = useState("Software");
+    const [activeTab, setActiveTab] = useState("Recommended");
     const [activeSlab, setActiveSlab] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
@@ -35,12 +35,24 @@ const CoursesSection = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const filteredCourses = activeTab === "All"
+    const recommendedTitles = [
+        "Medical Coding",
+        "Graphic Designing",
+        "Digital Marketing",
+        "Accounts & Tally",
+        "Cyber Security"
+    ];
+
+    const filteredCourses = activeTab === "Recommended"
         ? coursesData
-        : coursesData.filter(course => course.category === activeTab);
+            .filter(course => recommendedTitles.includes(course.title))
+            .sort((a, b) => recommendedTitles.indexOf(a.title) - recommendedTitles.indexOf(b.title))
+        : activeTab === "All"
+            ? coursesData
+            : coursesData.filter(course => course.category === activeTab);
 
     return (
-        <section className="gk-courses-section">
+        <section className="gk-courses-section" id="courses">
             <div className="gk-container">
                 <div className="gk-section-header">
                     <span className="gk-subtitle">Upgrade Your Skills</span>
@@ -113,6 +125,28 @@ const CoursesSection = () => {
                     })}
                 </div>
 
+                {/* Recommended Tab (Next Line) */}
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem', marginTop: '-1rem' }}>
+                    <button
+                        className={`gk-tab-btn ${activeTab === "Recommended" ? 'active' : ''}`}
+                        onClick={() => setActiveTab("Recommended")}
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            background: activeTab === "Recommended" ? 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' : 'rgba(255, 215, 0, 0.1)',
+                            color: activeTab === "Recommended" ? '#000' : '#64748b',
+                            border: '1px solid #FFD700',
+                            fontWeight: '700',
+                            padding: '12px 24px',
+                            boxShadow: activeTab === "Recommended" ? '0 4px 15px rgba(255, 215, 0, 0.4)' : 'none'
+                        }}
+                    >
+                        <i className="fa-solid fa-star"></i>
+                        Trending Courses
+                    </button>
+                </div>
+
                 <div className="gk-courses-grid">
                     {filteredCourses.map((course) => (
                         <div className="gk-course-card" key={course.id}>
@@ -137,13 +171,13 @@ const CoursesSection = () => {
                                     </div>
                                 </div>
 
-                                <div className="gk-price-info">
+                                {/* <div className="gk-price-info">
                                     <span className="gk-price-current">
-                                        {/* <i className="fa-solid fa-tag"></i> */}
+                                        <i className="fa-solid fa-tag"></i>
                                         {course.price}
                                     </span>
                                     <span className="gk-price-original">{course.originalPrice}</span>
-                                </div>
+                                </div> */}
 
                                 <div className="gk-price-row">
                                     <span

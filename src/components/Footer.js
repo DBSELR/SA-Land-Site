@@ -39,14 +39,14 @@ const Footer = () => {
                     {/* Brand & Socials */}
                     <div className="gk-brand-column">
                         <div className="gk-footer-logo">
-                            <img src="/logo.png" alt="Skill Ascent" style={{ maxHeight: '70px', borderRadius: '8px' }} />
+                            <img src="../images/logo.png" alt="Skill Ascent" style={{ maxHeight: '70px', borderRadius: '8px' }} />
                         </div>
 
                         <div className="gk-social-icons">
-                            <a href="https://www.facebook.com/DbsSkillascent/" target="_blank" rel="noopener noreferrer" className="gk-social-link"><i className="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/DbsSkillascent" target="_blank" rel="noopener noreferrer" className="gk-social-link"><i className="fab fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/dbs_skillascent/" target="_blank" rel="noopener noreferrer" className="gk-social-link"><i className="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/@DbsSkillAscent" target="_blank" rel="noopener noreferrer" className="gk-social-link"><i className="fab fa-youtube"></i></a>
-                            <a href="#" className="gk-social-link"><i className="fab fa-linkedin-in"></i></a>
+                            <a href="http://youtube.com/post/UgkxgUqog4VnG8URQEleWA2gbSsqlgRn-9jT?si=dbf_k_281vVb5Tp_" target="_blank" rel="noopener noreferrer" className="gk-social-link"><i className="fab fa-youtube"></i></a>
+                            <a href="https://www.linkedin.com/company/skill-ascent?trk=blended-typeahead" target="_blank" rel="noopener noreferrer" className="gk-social-link"><i className="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
 
@@ -68,11 +68,11 @@ const Footer = () => {
                     <div className="gk-link-group">
                         <h4 className="gk-link-header">Software Development</h4>
                         <ul>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>MERN Stack Dev</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Java Full Stack</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Python Full Stack</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Frontend (React)</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Data Analytics</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>MERN Stack Dev</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Java Full Stack</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Python Full Stack</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Frontend (React)</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Data Analytics</a></li>
                         </ul>
                     </div>
 
@@ -80,11 +80,11 @@ const Footer = () => {
                     <div className="gk-link-group">
                         <h4 className="gk-link-header">Tech & Design</h4>
                         <ul>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Data Science</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>DevOps (AWS)</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Cyber Security</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Graphic Designing</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Digital Marketing</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Data Science</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>DevOps (AWS)</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Cyber Security</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Graphic Designing</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Digital Marketing</a></li>
                         </ul>
                     </div>
 
@@ -92,11 +92,11 @@ const Footer = () => {
                     <div className="gk-link-group">
                         <h4 className="gk-link-header">Business & Others</h4>
                         <ul>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Power BI</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Medical Coding</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Accounts & Tally</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>TET / DSC Exams</a></li>
-                            <li><a href="#" onClick={(e) => e.preventDefault()}>Organic Farming</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Power BI</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Medical Coding</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Accounts & Tally</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>TET / DSC Exams</a></li>
+                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Organic Farming</a></li>
                         </ul>
                     </div>
 

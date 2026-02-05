@@ -6,7 +6,7 @@ const Banner = () => {
             <div className="banner-container">
                 {/* Left: Image */}
                 <div className="banner-image">
-                    <img src="/banner_student.png" alt="Students discussing" />
+                    <img src="../images/banner_student.png" alt="Students discussing" />
                 </div>
 
                 {/* Center: Text */}

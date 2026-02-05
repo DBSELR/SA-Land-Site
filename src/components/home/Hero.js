@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 
 /* --- COURSE DATA --- */
 const coursesData = [
+    // Priority Courses
+    { title: "Medical Coding", category: "Medical", duration: "40 Days", role: "Medical Coder", description: "Launch a rewarding healthcare career by mastering medical coding standards and practices. Learn to accurately translate medical diagnoses and procedures into universal codes." },
+    { title: "Graphic Designing", category: "Design", duration: "45 Days", role: "Creative Designer", description: "Design captivating visuals and compelling branding materials using industry-standard tools. Unleash your creativity to produce stunning graphics for print and digital media." },
+    { title: "Digital Marketing", category: "Business Courses", duration: "45 Days", role: "Digital Marketer", description: "Drive business growth through strategic online marketing, SEO, and social media campaigns. Learn to reach target audiences effectively and maximize ROI in the digital space." },
+    { title: "Accounts & Tally", category: "Business Courses", duration: "45 Days", role: "Accountant", description: "Manage financial accounts proficiently with practical Tally and comprehensive accounting training. Gain the skills needed for accurate bookkeeping and financial reporting." },
+    { title: "Cyber Security", category: "Software", duration: "45 Days", role: "Security Analyst", description: "Protect critical systems and networks from evolving cyber threats with advanced security strategies. Learn vulnerability assessment, ethical hacking, and risk management." },
+
     // Software
     { title: "MERN Stack Development", category: "Software", duration: "60 Days", role: "MERN Developer", description: "Build robust, scalable full-stack web applications using MongoDB, Express, React, and Node.js. Master the complete development lifecycle from backend logic to dynamic frontend interactivity." },
     { title: "Java Full Stack Development", category: "Software", duration: "60 Days", role: "Java Developer", description: "Master core and advanced Java programming to build secure, enterprise-grade applications. Gain deep expertise in Spring Boot, Hibernate, and microservices architecture for modern development." },
@@ -9,19 +16,10 @@ const coursesData = [
     { title: "Data Science", category: "Software", duration: "90 Days", role: "Data Scientist", description: "Analyze complex datasets and build advanced predictive models using Python and Machine Learning. Transform raw data into actionable intelligence for strategic decision-making." },
     { title: "Data Analytics", category: "Software", duration: "50 Days", role: "Data Analyst", description: "Transform raw data into meaningful business insights using statistical analysis and visualization tools. Master the art of storytelling with data to drive organizational success." },
     { title: "DevOps with AWS", category: "Software", duration: "50 Days", role: "DevOps Engineer", description: "Streamline software development workflows and deploy scalable applications on the cloud. Master CI/CD pipelines, containerization, and infrastructure automation." },
-    { title: "Cyber Security", category: "Software", duration: "45 Days", role: "Security Analyst", description: "Protect critical systems and networks from evolving cyber threats with advanced security strategies. Learn vulnerability assessment, ethical hacking, and risk management." },
     { title: "Frontend Development (React)", category: "Software", duration: "45 Days", role: "Frontend Developer", description: "Create stunning, interactive user interfaces using the powerful React library. Build responsive, component-based web applications that deliver exceptional user experiences." },
 
-    // Design
-    { title: "Graphic Designing", category: "Design", duration: "45 Days", role: "Creative Designer", description: "Design captivating visuals and compelling branding materials using industry-standard tools. Unleash your creativity to produce stunning graphics for print and digital media." },
-
-    // Business Courses
-    { title: "Digital Marketing", category: "Business Courses", duration: "45 Days", role: "Digital Marketer", description: "Drive business growth through strategic online marketing, SEO, and social media campaigns. Learn to reach target audiences effectively and maximize ROI in the digital space." },
-    { title: "Accounts & Tally", category: "Business Courses", duration: "45 Days", role: "Accountant", description: "Manage financial accounts proficiently with practical Tally and comprehensive accounting training. Gain the skills needed for accurate bookkeeping and financial reporting." },
+    // Business Courses (Remaining)
     { title: "Power BI with Adv.Excel", category: "Business Courses", duration: "45 Days", role: "Power BI Developer", description: "Visualize business data and create interactive, real-time dashboards for informed decision-making. Transform disparate data sources into clear, actionable business intelligence." },
-
-    // Medical
-    { title: "Medical Coding", category: "Medical", duration: "40 Days", role: "Medical Coder", description: "Launch a rewarding healthcare career by mastering medical coding standards and practices. Learn to accurately translate medical diagnoses and procedures into universal codes." },
 
     // Mechanical
     { title: "AutoCAD (Mechanical)", category: "Mechanical", duration: "45 Days", role: "Design Engineer", description: "Master 2D drafting and 3D modeling for mechanical engineering. Learn to create precise technical drawings and blueprints using industry-standard AutoCAD software." },
@@ -99,6 +97,18 @@ const Hero = () => {
                             }}
                         >
                             Explore Courses <i className="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                        <button
+                            className="btn-secondary"
+                            onClick={() => {
+                                const section = document.getElementById('contact');
+                                if (section) {
+                                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                            }}
+                        >
+                            Book A Demo <i className="fa-solid fa-calendar-check"></i>
                         </button>
                     </div>
                 </div>

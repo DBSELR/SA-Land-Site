@@ -72,10 +72,31 @@ const testimonialsData = [
         feedback: "Excellent course content. The daily assignments and practice sessions helped me improve my coding logic. Very happy with the training.",
         initial: "H",
         color: "#14B8A6"
+    },
+    {
+        id: 9,
+        name: "Rajesh Varma",
+        role: "Data Analyst",
+        rating: 5,
+        feedback: "The course curriculum is very well structured. I gained confidence in SQL and Tableau.",
+        initial: "R",
+        color: "#EF4444"
+    },
+    {
+        id: 10,
+        name: "Anusha B",
+        role: "Frontend Developer",
+        rating: 5,
+        feedback: "React training was top-notch. I loved the real-time project experience.",
+        initial: "A",
+        color: "#3B82F6"
     }
 ];
 
 const Testimonials = () => {
+    const topRow = testimonialsData.slice(0, 5);
+    const bottomRow = testimonialsData.slice(5, 10);
+
     return (
         <section className="gk-testimonials-section" id="testimonials">
             <div className="gk-container">
@@ -85,33 +106,65 @@ const Testimonials = () => {
                     <div className="gk-underline"></div>
                 </div>
 
+                {/* Top Row - Scrolls Left */}
                 <div className="gk-testimonials-scroll-container">
-                    <div className="gk-testimonials-track">
-                        {/* Double the data for seamless loop */}
-                        {[...testimonialsData, ...testimonialsData].map((item, index) => (
-                            <div className="gk-testimonial-card" key={`${item.id}-${index}`}>
+                    <div className="gk-testimonials-track scroll-left">
+                        {[...topRow, ...topRow, ...topRow].map((item, index) => (
+                            <div className="gk-testimonial-card compact" key={`top-${item.id}-${index}`}>
                                 <div className="gk-card-top">
                                     <div className="gk-user-profile">
-                                        <div className="gk-user-avatar" style={{ backgroundColor: item.color }}>
+                                        <div className="gk-user-avatar small" style={{ backgroundColor: item.color }}>
                                             {item.initial}
                                         </div>
                                         <div className="gk-user-info">
-                                            <h4 className="gk-user-name">{item.name}</h4>
-                                            <span className="gk-user-role">{item.role}</span>
+                                            <h4 className="gk-user-name small">{item.name}</h4>
+                                            <span className="gk-user-role small">{item.role}</span>
                                         </div>
                                     </div>
-                                    <div className="gk-quote-icon">
+                                    <div className="gk-quote-icon small">
                                         <i className="fas fa-quote-right"></i>
                                     </div>
                                 </div>
 
-                                <div className="gk-star-rating">
+                                <div className="gk-star-rating small">
                                     {[...Array(5)].map((_, i) => (
                                         <i key={i} className="fas fa-star"></i>
                                     ))}
                                 </div>
 
-                                <p className="gk-user-feedback">"{item.feedback}"</p>
+                                <p className="gk-user-feedback small">"{item.feedback}"</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Bottom Row - Scrolls Right (Reverse) */}
+                <div className="gk-testimonials-scroll-container" style={{ marginTop: '20px' }}>
+                    <div className="gk-testimonials-track scroll-right">
+                        {[...bottomRow, ...bottomRow, ...bottomRow].map((item, index) => (
+                            <div className="gk-testimonial-card compact" key={`bottom-${item.id}-${index}`}>
+                                <div className="gk-card-top">
+                                    <div className="gk-user-profile">
+                                        <div className="gk-user-avatar small" style={{ backgroundColor: item.color }}>
+                                            {item.initial}
+                                        </div>
+                                        <div className="gk-user-info">
+                                            <h4 className="gk-user-name small">{item.name}</h4>
+                                            <span className="gk-user-role small">{item.role}</span>
+                                        </div>
+                                    </div>
+                                    <div className="gk-quote-icon small">
+                                        <i className="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+
+                                <div className="gk-star-rating small">
+                                    {[...Array(5)].map((_, i) => (
+                                        <i key={i} className="fas fa-star"></i>
+                                    ))}
+                                </div>
+
+                                <p className="gk-user-feedback small">"{item.feedback}"</p>
                             </div>
                         ))}
                     </div>

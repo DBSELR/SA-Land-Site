@@ -432,7 +432,7 @@ const RegistrationPage = () => {
                     <div className="gk-visual-decor gk-blob-2"></div>
                     <div className="gk-visual-content">
                         <div className="gk-brand-tag">
-                            <img src="/logo.jpg" alt="Skill Ascent" className="gk-reg-logo" />
+                            <img src="../images/logo.jpg" alt="Skill Ascent" className="gk-reg-logo" />
                         </div>
                         <h1 className="gk-visual-title">
                             Start your <br />

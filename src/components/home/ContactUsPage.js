@@ -85,6 +85,8 @@ const ContactUsPage = () => {
                     <div className="gk-contact-info-box">
                         <h3 className="gk-info-title">Contact Information</h3>
 
+
+
                         <div className="gk-info-details">
                             {/* Phone Icon & Link */}
                             <a href="tel:+8297222303" className="gk-detail-item">
@@ -141,14 +143,18 @@ const ContactUsPage = () => {
                             </div>
                         </div>
 
-                        {/* Reuse Social Styles from Footer if available */}
-                        <div className="gk-contact-socials">
+                        {/* Social Icons */}
+                        <div className="gk-contact-socials" style={{ marginTop: '20px', marginBottom: '30px' }}>
                             <div className="gk-social-icons-row">
-                                <a href="#" className="gk-soc-link"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#" className="gk-soc-link"><i className="fab fa-linkedin-in"></i></a>
-                                <a href="#" className="gk-soc-link"><i className="fab fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/DbsSkillascent" target="_blank" rel="noopener noreferrer" className="gk-soc-link"><i className="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/dbs_skillascent/" target="_blank" rel="noopener noreferrer" className="gk-soc-link"><i className="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/company/skill-ascent?trk=blended-typeahead" target="_blank" rel="noopener noreferrer" className="gk-soc-link"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
+
+
+
+
                     </div>
 
                     {/* Right Side: Contact Form */}

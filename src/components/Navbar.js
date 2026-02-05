@@ -36,7 +36,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 {/* Logo */}
                 <div className="logo" onClick={() => scrollToSection('home')} style={{ cursor: 'pointer' }}>
-                    <img src="/logo.png" alt="Skill Ascent" />
+                    <img src="../images/logo.png" alt="Skill Ascent" />
                 </div>
 
                 {/* Menu */}

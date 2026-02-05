@@ -249,6 +249,10 @@ body {
 }
 
 /* Hamburger Animation */
+.hamburger.active span {
+    background-color: #000;
+}
+
 .hamburger.active span:nth-child(1) {
     transform: translateY(8.5px) rotate(45deg);
 }
@@ -512,7 +516,7 @@ body {
 }
 
 .btn-primary {
-    padding: 16px 36px;
+    padding: 16px 60px;
     background: #ea580c;
     width: auto !important;
     /* Force auto width */
@@ -524,6 +528,8 @@ body {
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
+    font-family: "Barlow", sans-serif;
+    /* Explicit Font Family */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -550,24 +556,29 @@ body {
 }
 
 .btn-secondary {
-    padding: 16px 36px;
-    background: #ffffff;
-    color: #334155;
+    padding: 16px 24px;
+    background: #0f172a;
+    /* Dark Slate */
+    color: #ffffff;
     font-size: 16px;
-    font-weight: 600;
-    border: 1px solid #e2e8f0;
+    font-weight: 700;
+    font-family: "Barlow", sans-serif;
+    border: 1px solid transparent;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    /* Subtle shadow for white btn */
+    box-shadow: 0 4px 6px rgba(15, 23, 42, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-secondary:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-    color: #0f172a;
-    transform: translateY(-1px);
+    background: #1e293b;
+    /* Slightly lighter slate */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.3);
+    color: #ffffff;
 }
 
 /* --- RIGHT VISUAL (3D STACK) --- */
@@ -812,7 +823,7 @@ body {
 
     .btn-primary,
     .btn-secondary {
-        width: 100%;
+        width: 100% !important;
         justify-content: center;
     }
 
@@ -2192,6 +2203,8 @@ body {
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    z-index: 10;
+    /* Ensure content is clickable above any overlays */
 }
 
 .gk-contact-info-box::before {
@@ -2204,6 +2217,8 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     filter: blur(40px);
+    z-index: -1;
+    /* Push background effect behind content */
 }
 
 .gk-info-title {
@@ -2225,7 +2240,7 @@ body {
     flex-direction: column;
     gap: 2rem;
     margin-bottom: auto;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .gk-detail-item {
@@ -2235,6 +2250,9 @@ body {
     text-decoration: none;
     color: #fff;
     transition: transform 0.2s ease;
+    position: relative;
+    z-index: 20;
+    /* Ensure links are clickable */
 }
 
 .gk-detail-item:hover {
@@ -2254,6 +2272,14 @@ body {
     /* White Icon on Orange */
     flex-shrink: 0;
     backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect: Light up icon when row is hovered */
+.gk-detail-item:hover .gk-icon-circle {
+    background: #fff;
+    color: #ea580c;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Socials */
@@ -2269,7 +2295,10 @@ body {
 .gk-social-icons-row {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    position: relative;
+    z-index: 20;
+    justify-content: center;
 }
 
 .gk-soc-link {
@@ -2281,16 +2310,27 @@ body {
     justify-content: center;
     border-radius: 8px;
     color: #fff;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
+    position: relative;
+    /* Ensure hit area is solid */
+    z-index: 20;
+}
+
+/* Ensure the icon itself doesn't steal the hover */
+.gk-soc-link i {
+    pointer-events: none;
 }
 
 .gk-soc-link:hover {
     background: #fff;
     color: #ea580c;
-    /* Orange Icon on White Hover */
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
+
+
 
 
 /* --- Right Side: Contact Form --- */
@@ -5961,477 +6001,616 @@ ul {
 
 
 .payres-success-note {
-  background: #e6fffa;
-  border: 1px solid #2dd4bf;
-  border-left: 6px solid #14b8a6;
-  color: #065f46;
-  padding: 16px 18px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  font-size: 15px;
-  line-height: 1.6;
-  text-align: center;
+    background: #e6fffa;
+    border: 1px solid #2dd4bf;
+    border-left: 6px solid #14b8a6;
+    color: #065f46;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
 }
 
 .payres-success-note strong {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 
 .payres-steps-note {
-  background: linear-gradient(135deg, #f5f9ff, #eef5ff);
-  border: 1px solid rgba(47, 107, 255, 0.2);
-  border-left: 6px solid var(--primary);
-  color: #0b1225;
-  padding: 20px 24px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-  font-size: 15px;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(47, 107, 255, 0.05);
+    background: linear-gradient(135deg, #f5f9ff, #eef5ff);
+    border: 1px solid rgba(47, 107, 255, 0.2);
+    border-left: 6px solid var(--primary);
+    color: #0b1225;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(47, 107, 255, 0.05);
 }
 
 .payres-steps-note strong {
-  display: block;
-  font-size: 17px;
-  color: var(--primary);
-  margin-bottom: 12px;
+    display: block;
+    font-size: 17px;
+    color: var(--primary);
+    margin-bottom: 12px;
 }
 
 .payres-steps-note ol {
-  margin: 0 0 0 20px;
-  padding: 0;
-  color: #4b5563;
+    margin: 0 0 0 20px;
+    padding: 0;
+    color: #4b5563;
 }
 
 .payres-steps-note li {
-  margin-bottom: 8px;
-  padding-left: 4px;
+    margin-bottom: 8px;
+    padding-left: 4px;
 }
 
 .payres-steps-note li::marker {
-  color: var(--primary);
-  font-weight: 700;
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .payres-login-details {
-  margin-top: 10px;
-  padding: 14px 18px;
-  background: rgba(47, 107, 255, 0.06);
-  border: 1px solid rgba(47, 107, 255, 0.12);
-  border-radius: 10px;
-  font-size: 14px;
-  color: #1e293b;
+    margin-top: 10px;
+    padding: 14px 18px;
+    background: rgba(47, 107, 255, 0.06);
+    border: 1px solid rgba(47, 107, 255, 0.12);
+    border-radius: 10px;
+    font-size: 14px;
+    color: #1e293b;
 }
 
 .payres-login-details b {
-  color: var(--primary-600);
+    color: var(--primary-600);
 }
 
 
 /* ==== Page background & layout ==== */
 
 .payres-page {
-  min-height: 100vh;
-  margin-top: 100px;
-  background: #f3f4f7;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+    min-height: 100vh;
+    margin-top: 100px;
+    background: #f3f4f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
 }
 
 /* Loading state */
 
 .payres-loading-page {
-  background: #f3f4f7;
+    background: #f3f4f7;
 }
 
 .payres-loading-box {
-  text-align: center;
-  max-width: 400px;
+    text-align: center;
+    max-width: 400px;
 }
 
 .payres-loading-spinner {
-  width: 48px;
-  height: 48px;
-  color: #2563eb;
-  animation: payres-spin 0.9s linear infinite;
-  display: block;
-  margin: 0 auto 16px;
+    width: 48px;
+    height: 48px;
+    color: #2563eb;
+    animation: payres-spin 0.9s linear infinite;
+    display: block;
+    margin: 0 auto 16px;
 }
 
 .payres-loading-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin: 0 0 4px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 4px;
 }
 
 .payres-loading-text {
-  margin: 0;
-  color: #6b7280;
-  font-size: 0.95rem;
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.95rem;
 }
 
 /* Spinner animation */
 
 @keyframes payres-spin {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ==== Card ==== */
 
 .payres-card {
-  background: #ffffff;
-  width: 100%;
-  max-width: 480px;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.15);
-  border: 1px solid #e5e7eb;
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.15);
+    border: 1px solid #e5e7eb;
 }
 
 .payres-strip {
-  height: 6px;
-  width: 100%;
+    height: 6px;
+    width: 100%;
 }
 
 .payres-strip-success {
-  background-color: #22c55e;
+    background-color: #22c55e;
 }
 
 .payres-strip-failed {
-  background-color: #ef4444;
+    background-color: #ef4444;
 }
 
 .payres-strip-pending {
-  background-color: #eab308;
+    background-color: #eab308;
 }
 
 .payres-inner {
-  padding: 28px 32px 24px;
+    padding: 28px 32px 24px;
 }
 
 /* Header */
 
 .payres-header {
-  text-align: center;
-  margin-bottom: 24px;
+    text-align: center;
+    margin-bottom: 24px;
 }
 
 .payres-icon {
-  width: 70px;
-  height: 70px;
-  margin-bottom: 12px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 12px;
 }
 
 .payres-icon-success {
-  color: #22c55e;
+    color: #22c55e;
 }
 
 .payres-icon-failed {
-  color: #ef4444;
+    color: #ef4444;
 }
 
 .payres-icon-pending {
-  color: #eab308;
+    color: #eab308;
 }
 
 .payres-title {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #111827;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
 }
 
 .payres-subtitle {
-  margin-top: 4px;
-  margin-bottom: 0;
-  font-size: 0.95rem;
-  color: #6b7280;
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: #6b7280;
 }
 
 /* Amount box */
 
 .payres-amount-box {
-  margin: 0 auto 24px;
-  padding: 14px 10px;
-  border-radius: 12px;
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  text-align: center;
+    margin: 0 auto 24px;
+    padding: 14px 10px;
+    border-radius: 12px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    text-align: center;
 }
 
 .payres-amount-label {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.75rem;
-  color: #6b7280;
-  font-weight: 600;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 600;
 }
 
 .payres-amount-value {
-  margin-top: 4px;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #111827;
+    margin-top: 4px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
 }
 
 /* Details section */
 
 .payres-details-section {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 16px;
-  margin-top: 10px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+    margin-top: 10px;
 }
 
 .payres-details-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  font-size: 0.9rem;
-  gap: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    gap: 8px;
 }
 
 .payres-details-label {
-  color: #6b7280;
-  flex: 0 0 40%;
+    color: #6b7280;
+    flex: 0 0 40%;
 }
 
 .payres-details-value {
-  color: #111827;
-  font-weight: 500;
-  flex: 1;
-  text-align: right;
-  word-break: break-all;
+    color: #111827;
+    font-weight: 500;
+    flex: 1;
+    text-align: right;
+    word-break: break-all;
 }
 
 .payres-details-mono {
-  font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+    font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
 }
 
 /* Footer text in card */
 
 .payres-footer {
-  margin-top: 20px;
-  padding-top: 14px;
-  border-top: 1px dashed #e5e7eb;
-  text-align: center;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px dashed #e5e7eb;
+    text-align: center;
 }
 
 .payres-footer p {
-  margin: 0;
-  font-size: 0.75rem;
-  color: #9ca3af;
+    margin: 0;
+    font-size: 0.75rem;
+    color: #9ca3af;
 }
 
 /* ==== Buttons / actions ==== */
 
 .payres-actions {
-  width: 100%;
-  max-width: 480px;
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    width: 100%;
+    max-width: 480px;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* Buttons base styling */
 
 .payres-download-btn,
 .payres-home-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.25s ease-in-out;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    width: 100%;
 }
 
 /* Download Invoice button */
 
 .payres-download-btn {
-  background: #16a34a;
-  color: #ffffff;
+    background: #16a34a;
+    color: #ffffff;
 }
 
 .payres-download-btn:hover {
-  background: #15803d;
-  transform: translateY(-1px);
+    background: #15803d;
+    transform: translateY(-1px);
 }
 
 .payres-download-btn:active {
-  transform: scale(0.97);
+    transform: scale(0.97);
 }
 
 /* Go Home button */
 
 .payres-home-btn {
-  background: #0ea5e9;
-  color: #ffffff;
+    background: #0ea5e9;
+    color: #ffffff;
 }
 
 .payres-home-btn:hover {
-  background: #0284c7;
-  transform: translateY(-1px);
+    background: #0284c7;
+    transform: translateY(-1px);
 }
 
 .payres-home-btn:active {
-  transform: scale(0.97);
+    transform: scale(0.97);
 }
 
 /* Icons & text inside buttons */
 
 .payres-btn-icon,
 .payres-home-icon {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .payres-btn-text,
 .payres-home-text {
-  letter-spacing: 0.3px;
+    letter-spacing: 0.3px;
 }
 
 /* Layout for wider screens */
 
 @media (min-width: 640px) {
-  .payres-actions {
-    flex-direction: row;
-  }
+    .payres-actions {
+        flex-direction: row;
+    }
 
-  .payres-download-btn,
-  .payres-home-btn {
-    width: auto;
-    min-width: 180px;
-  }
+    .payres-download-btn,
+    .payres-home-btn {
+        width: auto;
+        min-width: 180px;
+    }
 }
 
 /* ===== Responsive Card & Typography ===== */
 
 @media (max-width: 600px) {
-  .payres-card {
-    max-width: 100%;
-    border-radius: 16px;
-  }
+    .payres-card {
+        max-width: 100%;
+        border-radius: 16px;
+    }
 
-  .payres-inner {
-    padding: 20px 18px 18px;
-  }
+    .payres-inner {
+        padding: 20px 18px 18px;
+    }
 
-  .payres-title {
-    font-size: 1.25rem;
-  }
+    .payres-title {
+        font-size: 1.25rem;
+    }
 
-  .payres-amount-value {
-    font-size: 1.6rem;
-  }
+    .payres-amount-value {
+        font-size: 1.6rem;
+    }
 
-  .payres-details-row {
-    font-size: 0.85rem;
-  }
+    .payres-details-row {
+        font-size: 0.85rem;
+    }
 
-  .payres-loading-title {
-    font-size: 1.1rem;
-  }
+    .payres-loading-title {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 420px) {
-  .payres-page {
-    padding: 16px 10px;
-  }
+    .payres-page {
+        padding: 16px 10px;
+    }
 
-  .payres-inner {
-    padding: 18px 14px 16px;
-  }
+    .payres-inner {
+        padding: 18px 14px 16px;
+    }
 
-  .payres-title {
-    font-size: 1.1rem;
-  }
+    .payres-title {
+        font-size: 1.1rem;
+    }
 
-  .payres-amount-value {
-    font-size: 1.4rem;
-  }
+    .payres-amount-value {
+        font-size: 1.4rem;
+    }
 
-  .payres-actions {
-    gap: 8px;
-  }
+    .payres-actions {
+        gap: 8px;
+    }
 
-  .payres-download-btn,
-  .payres-home-btn {
-    padding: 9px 12px;
-    font-size: 14px;
-    border-radius: 8px;
-  }
+    .payres-download-btn,
+    .payres-home-btn {
+        padding: 9px 12px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
 
-  .payres-btn-icon,
-  .payres-home-icon {
-    width: 18px;
-    height: 18px;
-  }
+    .payres-btn-icon,
+    .payres-home-icon {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 @media (max-width: 340px) {
-  .payres-page {
-    padding: 12px 8px;
-  }
+    .payres-page {
+        padding: 12px 8px;
+    }
 
-  .payres-inner {
-    padding: 16px 10px;
-  }
+    .payres-inner {
+        padding: 16px 10px;
+    }
 
-  .payres-download-btn,
-  .payres-home-btn {
-    padding: 8px 10px;
-    font-size: 13px;
-  }
+    .payres-download-btn,
+    .payres-home-btn {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
 }
 
 /* Print styles – only print the card */
 
 @media print {
-  body * {
-    visibility: hidden !important;
-  }
+    body * {
+        visibility: hidden !important;
+    }
 
-  #payres-invoice-card,
-  #payres-invoice-card * {
-    visibility: visible !important;
-  }
+    #payres-invoice-card,
+    #payres-invoice-card * {
+        visibility: visible !important;
+    }
 
-  #payres-invoice-card {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    box-shadow: none;
-    border: none;
-  }
+    #payres-invoice-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+    }
 
-  .payres-no-print {
-    display: none !important;
-  }
+    .payres-no-print {
+        display: none !important;
+    }
 
-  .payres-page {
-    padding: 0;
-    background: #ffffff;
-  }
+    .payres-page {
+        padding: 0;
+        background: #ffffff;
+    }
 }
 
 /* PaymentResult.css end */
+
+/* Testimonials Section */
+.gk-testimonials-section {
+    padding: 2rem 0;
+    background: #f9fafb;
+    overflow: hidden;
+}
+
+.gk-testimonials-scroll-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.gk-testimonials-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+}
+
+/* Animations */
+.gk-testimonials-track.scroll-left {
+    animation: scrollLeft 40s linear infinite;
+}
+
+.gk-testimonials-track.scroll-right {
+    animation: scrollRight 40s linear infinite;
+}
+
+.gk-testimonials-scroll-container:hover .gk-testimonials-track {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Card Styling - Compact Mode */
+.gk-testimonial-card.compact {
+    background: #fff7ed;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.3s ease;
+}
+
+.gk-testimonial-card.compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.gk-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.gk-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gk-user-avatar.small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.gk-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.gk-user-name.small {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1e293b;
+}
+
+.gk-user-role.small {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.gk-quote-icon.small {
+    font-size: 1rem;
+    color: #e2e8f0;
+}
+
+.gk-star-rating.small {
+    color: #f59e0b;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.gk-user-feedback.small {
+    font-size: 0.9rem;
+    color: #334155;
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

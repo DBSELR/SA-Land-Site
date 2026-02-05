@@ -39,7 +39,7 @@ const DemoBook = () => {
 
                 {/* Right Side: Image */}
                 <div className="demo-cert-img">
-                    <img src="/certi.jpg" alt="Certificate of Completion" />
+                    <img src="../images/certi.jpg" alt="Certificate of Completion" />
                 </div>
             </div>
         </section>
