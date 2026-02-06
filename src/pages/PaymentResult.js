@@ -54,7 +54,7 @@ const PaymentResult = () => {
     const fetchStatus = async () => {
       try {
         const res = await fetch(
-          `https://localhost:7045/api/payments/phonepe/status?merchantOrderId=${encodeURIComponent(
+          `https://api.skillascent.in/api/payments/phonepe/status?merchantOrderId=${encodeURIComponent(
             finalOrderId
           )}`
         );

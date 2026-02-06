@@ -27,8 +27,8 @@ const RegistrationPage = () => {
     const fetchCourses = async (mobileNo = null) => {
         try {
             const url = mobileNo
-                ? `https://localhost:7045/api/student/LandingFeeCalculation?mobileNo=${mobileNo}`
-                : "https://localhost:7045/api/student/LandingFeeCalculation";
+                ? `https://api.skillascent.in/api/student/LandingFeeCalculation?mobileNo=${mobileNo}`
+                : "https://api.skillascent.in/api/student/LandingFeeCalculation";
             const res = await fetch(url);
             const data = await res.json();
             setCourses(data);
@@ -59,7 +59,7 @@ const RegistrationPage = () => {
     // Fetch student details by mobile
     const fetchStudentDetails = async (mobileNo) => {
         try {
-            const res = await fetch(`https://localhost:7045/api/Student/GetStudentDetailsByMobile/${mobileNo}`);
+            const res = await fetch(`https://api.skillascent.in/api/Student/GetStudentDetailsByMobile/${mobileNo}`);
             if (res.ok) {
                 const data = await res.json();
                 console.log("Fetched student details:", data);
@@ -81,7 +81,7 @@ const RegistrationPage = () => {
     // Fetch payment status by mobile
     const fetchPaymentStatus = async (mobileNo) => {
         try {
-            const res = await fetch(`https://localhost:7045/api/Student/GetStudentPaymentStatus/${mobileNo}`);
+            const res = await fetch(`https://api.skillascent.in/api/Student/GetStudentPaymentStatus/${mobileNo}`);
             if (res.ok) {
                 const data = await res.json();
                 console.log("Fetched payment status:", data);
@@ -154,7 +154,7 @@ const RegistrationPage = () => {
             console.log("🚀 Registration payload:", registrationPayload);
 
             const registrationRes = await fetch(
-                "https://localhost:7045/api/student/Landingregister",
+                "https://api.skillascent.in/api/student/Landingregister",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -215,7 +215,7 @@ const RegistrationPage = () => {
             console.log("🚀 Payment initiate payload:", paymentPayload);
 
             const payRes = await fetch(
-                "https://localhost:7045/api/payments/phonepe/initiate",
+                "https://api.skillascent.in/api/payments/phonepe/initiate",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -305,7 +305,7 @@ const RegistrationPage = () => {
             console.log("🚀 Registration payload:", registrationPayload);
 
             const registrationRes = await fetch(
-                "https://localhost:7045/api/student/Landingregister",
+                "https://api.skillascent.in/api/student/Landingregister",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -361,7 +361,7 @@ const RegistrationPage = () => {
             console.log("🚀 Payment initiate payload:", paymentPayload);
 
             const payRes = await fetch(
-                "https://localhost:7045/api/payments/phonepe/initiate",
+                "https://api.skillascent.in/api/payments/phonepe/initiate",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
