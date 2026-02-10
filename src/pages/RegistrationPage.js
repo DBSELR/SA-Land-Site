@@ -194,7 +194,7 @@ const RegistrationPage = () => {
             // Calculate amount (production)
             const amount =
                 formData.feeType === "registration"
-                    ? 999
+                    ? 499
                     : selectedCourse
                         ? selectedCourse.offerFee
                         : 0;
