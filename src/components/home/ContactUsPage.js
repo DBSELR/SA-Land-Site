@@ -113,7 +113,7 @@ const ContactUsPage = () => {
 
                                     {/* Eluru */}
                                     <div className="gk-branch-block">
-                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Eluru (Head Office)</h5>
+                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Eluru</h5>
                                         <p style={{ margin: 0, fontSize: '0.95rem', color: '#fff', lineHeight: '1.6' }}>
                                             <strong>D BASE SOLUTIONS PVT LTD</strong><br />
                                             D.NO.16-58/33, Sai Sadan, Hanuman Nagar,<br />
@@ -123,7 +123,7 @@ const ContactUsPage = () => {
 
                                     {/* Vijayawada */}
                                     <div className="gk-branch-block">
-                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Vijayawada Branch</h5>
+                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Vijayawada</h5>
                                         <p style={{ margin: 0, fontSize: '0.95rem', color: '#fff', lineHeight: '1.6' }}>
                                             D.No 12-22, First Floor, Behind Alankar Bakery,<br />
                                             Enikepadu, Vijayawada - 521108
@@ -131,20 +131,20 @@ const ContactUsPage = () => {
                                     </div>
 
                                     {/* Hyderabad */}
-                                    <div className="gk-branch-block">
-                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Hyderabad Branch</h5>
+                                    {/*<div className="gk-branch-block">
+                                        <h5 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: '#fff', fontWeight: '700' }}>Hyderabad</h5>
                                         <p style={{ margin: 0, fontSize: '0.95rem', color: '#fff', lineHeight: '1.6' }}>
                                             Plot No. 13, Amar Co-operative Housing Society,<br />
                                             Madhapur, Hyderabad - 500081
                                         </p>
-                                    </div>
+                                    </div>*/}
 
                                 </div>
                             </div>
                         </div>
 
                         {/* Social Icons */}
-                        <div className="gk-contact-socials" style={{ marginTop: '20px', marginBottom: '30px' }}>
+                        <div className="gk-contact-socials" style={{ marginTop: '40px', marginBottom: '30px' }}>
                             <div className="gk-social-icons-row">
                                 <a href="https://www.facebook.com/DbsSkillascent" target="_blank" rel="noopener noreferrer" className="gk-soc-link"><i className="fab fa-facebook-f"></i></a>
                                 <a href="https://www.instagram.com/dbs_skillascent/" target="_blank" rel="noopener noreferrer" className="gk-soc-link"><i className="fab fa-instagram"></i></a>
@@ -209,7 +209,7 @@ const ContactUsPage = () => {
                                 <label htmlFor="message">Message *</label>
                                 <textarea
                                     id="message"
-                                    rows="14"
+                                    rows="11"
                                     placeholder="How can we help you?"
                                     required
                                     value={formData.message}

@@ -102,7 +102,7 @@ const CoursesSection = () => {
                                 key={cat}
                                 className={`gk-tab-btn ${isActive ? 'active' : ''}`}
                                 onClick={() => setActiveTab(cat)}
-                                style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                                style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', fontWeight: 'bold' }}
                             >
                                 {cat}
                                 <span style={{

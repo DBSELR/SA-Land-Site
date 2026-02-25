@@ -70,7 +70,7 @@ const CourseDetail = () => {
 
     // Inline styles for dynamic theming
     const heroStyle = {
-        background: `linear-gradient(135deg, ${themeColor}15 0%, #ffffff 100%)`,
+        background: `linear-gradient(135deg, ${themeColor}20 0%, #ffffff 100%)`,
         padding: '50px 20px',
         paddingTop: '120px',
         position: 'relative',
@@ -190,12 +190,32 @@ const CourseDetail = () => {
                             <img src={course.image} alt={course.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </div>
 
-                        <div className="gk-price-info" style={{ justifyContent: 'center', marginBottom: '30px', width: '100%' }}>
-                            <span className="gk-price-current" style={{ fontSize: '2.5rem', color: themeColor, display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                {/* <i class="fa-solid fa-tag"></i> */}
+                        <div className="gk-price-info" style={{
+                            display: 'flex',
+                            alignItems: 'baseline',
+                            justifyContent: 'center',
+                            gap: '12px',
+                            marginBottom: '30px',
+                            width: '100%'
+                        }}>
+                            <span className="gk-price-current" style={{
+                                fontSize: '2.5rem',
+                                fontWeight: '800',
+                                color: themeColor,
+                                lineHeight: 1
+                            }}>
                                 {course.price}
                             </span>
-                            <span className="gk-price-original" style={{ fontSize: '1.2rem' }}>{course.originalPrice}</span>
+                            {course.originalPrice && (
+                                <span className="gk-price-original" style={{
+                                    fontSize: '1.25rem',
+                                    color: '#94a3b8',
+                                    textDecoration: 'line-through',
+                                    fontWeight: '500'
+                                }}>
+                                    {course.originalPrice}
+                                </span>
+                            )}
                         </div>
 
                         <Link to="/register" className="gk-explore-btn" style={{

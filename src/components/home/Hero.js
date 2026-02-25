@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 /* --- COURSE DATA --- */
 const coursesData = [
@@ -48,6 +49,7 @@ const coursesData = [
 
 const Hero = () => {
     const [index, setIndex] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -102,10 +104,8 @@ const Hero = () => {
                         <button
                             className="btn-secondary"
                             onClick={() => {
-                                const section = document.getElementById('contact');
-                                if (section) {
-                                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
+                                navigate("/book-demo");
+                                window.scrollTo(0, 0);
                             }}
                         >
                             Book A Demo <i className="fa-solid fa-calendar-check"></i>
