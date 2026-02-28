@@ -43,7 +43,7 @@ export const coursesData = [
         brochureUrl: "/brochures/Cyber Security.pdf"
     },
     {
-        id: 109, title: "Frontend Development (React)", category: "Software", duration: "30 Days", role: "Frontend Dev", price: "₹8,000", originalPrice: "₹10,000", image: "../images/React.png",
+        id: 109, title: "Frontend Dev (React)", category: "Software", duration: "30 Days", role: "Frontend Dev", price: "₹8,000", originalPrice: "₹10,000", image: "../images/React.png",
         description: "Specialize in building modern, interactive user interfaces using the React.js library and modern JavaScript.",
         curriculum: ["Modern JavaScript (ES6+)", "React.js Core Concepts", "State Management (Redux)", "Routing & Hooks", "API Integration"],
         brochureUrl: "/brochures/Frontend Development (React).pdf"

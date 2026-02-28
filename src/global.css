@@ -1000,7 +1000,7 @@ body {
     color: #64748b;
     font-size: 1rem;
     line-height: 1.6;
-    font-weight:500;
+    font-weight: 500;
 }
 
 /* Slabs Container */
@@ -1354,20 +1354,30 @@ body {
 }
 
 .gk-course-title {
-    font-size: 1rem;
-    /* Sub-16px title */
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 800;
     color: #0f172a;
-    margin-bottom: 6px;
-    line-height: 1.25;
-    min-height: 2.5rem;
-    /* Adjusted for smaller font */
+    margin-bottom: 8px;
+    line-height: 1.35;
+    min-height: 3.1rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    /* Standard property */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    padding-left: 10px;
+    /* Space for the border */
+    border-left: 3px solid transparent;
+    /* Invisible by default or subtle color */
+    transition: all 0.3s ease;
+}
+
+/* Distinct left border accent on hover */
+.gk-course-card:hover .gk-course-title {
+    color: #ea580c;
+    border-left-color: #ea580c;
+    transform: translateX(4px);
+    background: linear-gradient(90deg, rgba(234, 88, 12, 0.05) 0%, transparent 100%);
 }
 
 .gk-course-meta {
@@ -6649,5 +6659,3 @@ ul {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-
