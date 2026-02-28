@@ -9,6 +9,7 @@ const statsData = [
 
 const AboutSection = () => {
     return (
+   <>
         <section className="gk-about-section">
             <div className="gk-about-container">
 
@@ -36,6 +37,8 @@ const AboutSection = () => {
 
             </div>
         </section>
+   </>
+
     );
 };
 

@@ -12,6 +12,8 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CourseDetail from "./pages/CourseDetail";
 import PaymentResult from "./pages/PaymentResult";
 import BookDemoPage from "./pages/BookDemoPage";
+import AboutSection from "./components/home/AboutSection";
+import ContactUsPage from "./components/home/ContactUsPage";
 
 
 function App() {
@@ -21,8 +23,11 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutSection />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/course/:id" element={<CourseDetail />} />
+ <Route path="/contact" element={<ContactUsPage />} />
+ 
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />

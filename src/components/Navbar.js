@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -43,13 +43,13 @@ const Navbar = () => {
                 <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
                     <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection("home"); }}>Home</a>
                     <a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses"); }}>Learn</a>
-                    <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection("about"); }}>About</a>
-                    <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}>Contact</a>
+                    <Link to="/about">About</Link>
+                    <Link to="/contact">Contact</Link>
                     <a href="/register" onClick={handleRegisterClick} className="nav-cta-btn">Register</a>
                 </nav>
-
+ 
                 {/* Mobile Toggle */}
-                <div
+                <div 
                     className={`hamburger ${menuOpen ? "active" : ""}`}
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
