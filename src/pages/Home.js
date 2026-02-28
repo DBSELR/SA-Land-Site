@@ -37,9 +37,9 @@ const Home = () => {
             <div id="courses"><CoursesSection /></div>
             <DemoBook />
             <AdvantageSection />
-            <div id="about"><WhyChooseSection /></div>
+         
             <Testimonials />
-            <div id="contact"><ContactUsPage /></div>
+            
             <Banner />
         </>
     );
