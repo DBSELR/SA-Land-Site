@@ -43,13 +43,16 @@ const CoursesSection = () => {
         "Cyber Security"
     ];
 
+    const allowedCourses = ["Graphic Designing", "Digital Marketing"];
+    const visibleCourses = coursesData.filter(course => allowedCourses.includes(course.title));
+
     const filteredCourses = activeTab === "Recommended"
-        ? coursesData
+        ? visibleCourses
             .filter(course => recommendedTitles.includes(course.title))
             .sort((a, b) => recommendedTitles.indexOf(a.title) - recommendedTitles.indexOf(b.title))
         : activeTab === "All"
-            ? coursesData
-            : coursesData.filter(course => course.category === activeTab);
+            ? visibleCourses
+            : visibleCourses.filter(course => course.category === activeTab);
 
     return (
         <section className="gk-courses-section" id="courses">
@@ -95,7 +98,9 @@ const CoursesSection = () => {
                 {/* Category Tabs */}
                 <div className="gk-tabs-container">
                     {categories.map((cat) => {
-                        const count = coursesData.filter(course => course.category === cat).length;
+                        const count = visibleCourses.filter(course => course.category === cat).length;
+                        if (count === 0) return null;
+
                         const isActive = activeTab === cat;
                         return (
                             <button

@@ -51,17 +51,21 @@ const Hero = () => {
     const [index, setIndex] = useState(0);
     const navigate = useNavigate();
 
+    // Filter courses directly here so we don't delete data
+    const allowedCourses = ["Graphic Designing", "Digital Marketing"];
+    const visibleCourses = coursesData.filter(c => allowedCourses.includes(c.title));
+
     useEffect(() => {
         const timer = setInterval(() => {
-            setIndex((prev) => (prev + 1) % coursesData.length);
+            setIndex((prev) => (prev + 1) % visibleCourses.length);
         }, 5000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [visibleCourses.length]);
 
     // Safe index access to prevent crashes on hot-reload or data changes
-    const safeIndex = index % coursesData.length;
-    const current = coursesData[safeIndex] || coursesData[0];
+    const safeIndex = index % visibleCourses.length;
+    const current = visibleCourses[safeIndex] || visibleCourses[0];
 
     return (
         <section className="hero-container" id="home">
@@ -108,7 +112,7 @@ const Hero = () => {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            Book A Demo <i className="fa-solid fa-calendar-check"></i>
+                            <span>Book A Demo</span> <i className="fa-solid fa-calendar-check"></i>
                         </button>
                     </div>
                 </div>

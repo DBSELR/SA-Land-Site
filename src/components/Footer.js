@@ -64,53 +64,31 @@ const Footer = () => {
                 {/* Middle Section: Links Grid */}
                 <div className="gk-footer-links">
 
-                    {/* Column 1: Software & Development */}
+                    {/* Column 1: Courses */}
                     <div className="gk-link-group">
-                        <h4 className="gk-link-header">Software Development</h4>
+                        <h4 className="gk-link-header">Courses</h4>
                         <ul>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>MERN Stack Dev</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Java Full Stack</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Python Full Stack</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Frontend (React)</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Data Analytics</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Column 2: Advanced Tech & Design */}
-                    <div className="gk-link-group">
-                        <h4 className="gk-link-header">Tech & Design</h4>
-                        <ul>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Data Science</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>DevOps (AWS)</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Cyber Security</a></li>
                             <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Graphic Designing</a></li>
                             <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Digital Marketing</a></li>
                         </ul>
                     </div>
 
-                    {/* Column 3: Business, Medical & Others */}
-                    <div className="gk-link-group">
-                        <h4 className="gk-link-header">Business & Others</h4>
-                        <ul>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Power BI</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Medical Coding</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Accounts & Tally</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>TET / DSC Exams</a></li>
-                            <li><a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses1"); }}>Organic Farming</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Column 4: Company & Engage */}
+                    {/* Column 2: Company */}
                     <div className="gk-link-group">
                         <h4 className="gk-link-header">Company</h4>
                         <ul>
                             <li><a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection("about"); }}>About Us</a></li>
                             <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}>Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Column 3: Info */}
+                    <div className="gk-link-group">
+                        <h4 className="gk-link-header">Info</h4>
+                        <ul>
                             <li><Link to="/return-policy" onClick={() => window.scrollTo(0, 0)}>Return Policy</Link></li>
                             <li><Link to="/privacy-policy" onClick={() => window.scrollTo(0, 0)}>Privacy Policy</Link></li>
                             <li><Link to="/terms-conditions" onClick={() => window.scrollTo(0, 0)}>Terms & Conditions</Link></li>
-                            {/* <li><Link to="/cancellation-policy" onClick={() => window.scrollTo(0, 0)}>Cancellation Policy</Link></li>
-                            <li><Link to="/refund-policy" onClick={() => window.scrollTo(0, 0)}>Refund Policy</Link></li> */}
                         </ul>
                     </div>
 

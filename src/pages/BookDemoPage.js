@@ -18,7 +18,6 @@ const BookDemoPage = () => {
     const courses = [
         { name: 'Graphic Designing', day: 0, time: '11:00 AM' }, // Sunday
         { name: 'Digital Marketing', day: 3, time: '07:00 PM' }, // Wednesday
-        { name: 'Medical Coding', day: 6, time: '06:00 PM' }    // Saturday
     ];
 
     const getNextSlotDate = (dayOfWeek, timeStr) => {

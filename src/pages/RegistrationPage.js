@@ -31,7 +31,12 @@ const RegistrationPage = () => {
                 : "https://api.skillascent.in/api/student/LandingFeeCalculation";
             const res = await fetch(url);
             const data = await res.json();
-            setCourses(data);
+
+            // Filter courses to only show specific ones as requested
+            const allowedCourses = ["Graphic Designing", "Digital Marketing"];
+            const filteredData = data.filter(c => allowedCourses.includes(c.programmeName));
+
+            setCourses(filteredData);
         } catch (err) {
             console.error("Error fetching courses:", err);
         }

@@ -4,8 +4,7 @@ import axios from "axios";
 import Hero from "../components/home/Hero";
 import CoursesSection from "../components/home/CoursesSection";
 import AdvantageSection from "../components/home/AdvantageSection";
-import WhyChooseSection from "../components/home/AboutSection";
-import ContactUsPage from "../components/home/ContactUsPage";
+
 import DemoBook from "../components/home/DemoBook";
 
 import Testimonials from "../components/home/Testimonials";

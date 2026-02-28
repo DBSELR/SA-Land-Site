@@ -3,91 +3,91 @@ import React from 'react';
 const testimonialsData = [
     {
         id: 1,
-        name: "Venkatesh Rao",
-        role: "Java Full Stack Developer",
+        name: "Venkatesh Babu",
+        role: "Graphic Designing",
         rating: 5,
-        feedback: "Best training institute for Java! The real-time projects helped me crack the interview. Got placed in a top MNC with a good package.",
+        feedback: "Best training institute in Hyderabad out there! The real-time projects helped me build a great portfolio. Got a design job in Hitech City with a great package.",
         initial: "V",
         color: "#EF4444"
     },
     {
         id: 2,
         name: "Sravani Reddy",
-        role: "Data Science Student",
+        role: "Digital Marketing",
         rating: 5,
-        feedback: "Sir explains concepts very clearly. I was afraid of coding, but now I am confident in Python and ML. Highly recommend for non-IT students too.",
+        feedback: "The trainers explain concepts very clearly from scratch. I learned all about SEO and Ads. Highly recommend to anyone in AP & TS looking to enter marketing!",
         initial: "S",
         color: "#3B82F6"
     },
     {
         id: 3,
         name: "Kalyan Ram",
-        role: "Digital Marketing Expert",
+        role: "Digital Marketing",
         rating: 5,
-        feedback: "Practical teaching with live campaigns. I started my own agency after this course. Best place to learn Digital Marketing in the region.",
+        feedback: "Practical teaching with live campaigns! I started my own local ad agency in Vizag right after completing this course. Best place to learn Digital Marketing practically.",
         initial: "K",
         color: "#10B981"
     },
     {
         id: 4,
         name: "Sneha Chowdary",
-        role: "MERN Stack Developer",
+        role: "Graphic Designing",
         rating: 5,
-        feedback: "Complete hands-on training. The placement support is excellent. They guided me from resume preparation to mock interviews.",
+        feedback: "Complete hands-on training from day one. Their placement support is excellent, and they guided me perfectly for creative agency interviews in Ameerpet.",
         initial: "S",
         color: "#F59E0B"
     },
     {
         id: 5,
         name: "Sai Teja",
-        role: "Graphic Designer",
+        role: "Graphic Designing",
         rating: 5,
-        feedback: "I learnt everything from basics to advanced tools. The design portfolio I built here helped me get a job immediately. Thank you Skill Ascent!",
+        feedback: "I learnt everything from basic Photoshop to advanced branding tools. The design portfolio I built here helped me get a job immediately in Vijayawada! Thank you Skill Ascent.",
         initial: "S",
         color: "#EC4899"
     },
     {
         id: 6,
         name: "Lakshmi Priya",
-        role: "AWS DevOps Engineer",
+        role: "Digital Marketing",
         rating: 5,
-        feedback: "Teaching style is very good. Complex Cloud concepts were made easy to understand. Best choice for DevOps training.",
+        feedback: "The teaching style is very good. Complex analytics and ad bidding concepts were made easy to understand. Best choice for learning marketing in our Telugu states.",
         initial: "L",
         color: "#6366F1"
     },
     {
         id: 7,
-        name: "Pavan Kumar",
-        role: "Medical Coder",
+        name: "Pavan Kumar Goud",
+        role: "Graphic Designing",
         rating: 5,
-        feedback: "Good faculty and clear explanation. I passed my certification easily. Very helpful for life science students looking for IT jobs.",
+        feedback: "Good faculty and very clear explanations on Illustrator and UI design. The practical assignments really elevated my creative skills.",
         initial: "P",
         color: "#8B5CF6"
     },
     {
         id: 8,
         name: "Haritha Naidu",
-        role: "Python Developer",
+        role: "Digital Marketing",
         rating: 5,
-        feedback: "Excellent course content. The daily assignments and practice sessions helped me improve my coding logic. Very happy with the training.",
+        feedback: "Excellent course content. The daily assignments and practice sessions drastically helped me understand social media algorithms. Very happy with the Skill Ascent training.",
         initial: "H",
         color: "#14B8A6"
     },
     {
         id: 9,
         name: "Rajesh Varma",
-        role: "Data Analyst",
+        role: "Graphic Designing",
         rating: 5,
-        feedback: "The course curriculum is very well structured. I gained confidence in SQL and Tableau.",
+        feedback: "The course curriculum is very well-structured for beginners. I gained heavy confidence in design principles. Excellent institute for learning graphic design.",
         initial: "R",
         color: "#EF4444"
     },
     {
         id: 10,
-        name: "Anusha B",
-        role: "Frontend Developer",
+        name: "Anusha Boppana",
+        role: "Digital Marketing",
         rating: 5,
-        feedback: "React training was top-notch. I loved the real-time project experience.",
+        feedback: "The hands-on training was top-notch with practical ad campaigns. I loved the real-time project experience and got a social media manager role instantly after completion.",
         initial: "A",
         color: "#3B82F6"
     }

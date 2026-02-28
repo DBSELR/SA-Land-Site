@@ -12,22 +12,24 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CourseDetail from "./pages/CourseDetail";
 import PaymentResult from "./pages/PaymentResult";
 import BookDemoPage from "./pages/BookDemoPage";
-import AboutSection from "./components/home/AboutSection";
-import ContactUsPage from "./components/home/ContactUsPage";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
+
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutSection />} />
+          <Route path="/about" element={<About />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/course/:id" element={<CourseDetail />} />
- <Route path="/contact" element={<ContactUsPage />} />
- 
+          <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />

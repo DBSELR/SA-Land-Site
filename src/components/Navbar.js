@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState("home");
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/about') setActiveTab('about');
+        else if (location.pathname === '/contact') setActiveTab('contact');
+        else if (location.pathname === '/register') setActiveTab('register');
+        else if (location.pathname === '/') {
+            // Only reset to home if we aren't looking at courses
+            if (activeTab !== 'courses') setActiveTab('home');
+        }
+    }, [location.pathname]);
+
+    const handleNavClick = (tab, e = null) => {
+        if (e) e.preventDefault();
+        setActiveTab(tab);
+        if (tab === "home" || tab === "courses") {
+            scrollToSection(tab);
+        } else {
+            setMenuOpen(false);
+        }
+    };
 
     const scrollToSection = (id) => {
         if (location.pathname !== '/') {
@@ -41,15 +62,15 @@ const Navbar = () => {
 
                 {/* Menu */}
                 <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-                    <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection("home"); }}>Home</a>
-                    <a href="#courses" onClick={(e) => { e.preventDefault(); scrollToSection("courses"); }}>Learn</a>
-                    <Link to="/about">About</Link>
-                    <Link to="/contact">Contact</Link>
+                    <a href="#home" onClick={(e) => handleNavClick("home", e)} className={activeTab === "home" ? "active" : ""}>Home</a>
+                    <a href="#courses" onClick={(e) => handleNavClick("courses", e)} className={activeTab === "courses" ? "active" : ""}>Learn</a>
+                    <Link to="/about" onClick={() => handleNavClick("about")} className={activeTab === "about" ? "active" : ""}>About</Link>
+                    <Link to="/contact" onClick={() => handleNavClick("contact")} className={activeTab === "contact" ? "active" : ""}>Contact</Link>
                     <a href="/register" onClick={handleRegisterClick} className="nav-cta-btn">Register</a>
                 </nav>
- 
+
                 {/* Mobile Toggle */}
-                <div 
+                <div
                     className={`hamburger ${menuOpen ? "active" : ""}`}
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
