@@ -27,6 +27,17 @@ const CourseDetail = () => {
     const [showModal, setShowModal] = useState(false);
     const course = coursesData.find(c => c.id === parseInt(id));
 
+    // Form State for "Coming Soon" courses
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        mobileNo: '',
+    });
+    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+
+    // Replace with your Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpHISv1RWgD6kIwOCIw437JBqGTghxD0bt_cS0yop-IwFeVoRAALWcpD4-2kO6NHHk/exec";
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [id]);
@@ -36,6 +47,156 @@ const CourseDetail = () => {
             <div className="gk-container" style={{ padding: '100px 20px', textAlign: 'center' }}>
                 <h2>Course Not Found</h2>
                 <Link to="/" className="gk-explore-btn" style={{ maxWidth: '200px', margin: '20px auto' }}>Back to Home</Link>
+            </div>
+        );
+    }
+
+    const allowedCourses = ["Graphic Designing", "Digital Marketing"];
+    if (!allowedCourses.includes(course.title)) {
+
+        const handleChange = (e) => {
+            const { id, value } = e.target;
+            setFormData({ ...formData, [id]: value });
+        };
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setStatus('loading');
+
+            // Append course title to the payload
+            const payload = { ...formData, course: course.title };
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify(payload),
+                });
+
+                setStatus('success');
+                setFormData({ name: '', email: '', mobileNo: '' });
+                setTimeout(() => setStatus('idle'), 5000);
+            } catch (error) {
+                console.error("Submission failed:", error);
+                setStatus('error');
+                setTimeout(() => setStatus('idle'), 8000);
+            }
+        };
+
+        return (
+            <div className="gk-container" style={{ padding: '100px 20px', minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{
+                    background: '#ffffff',
+                    padding: '40px',
+                    borderRadius: '24px',
+                    border: '1px solid #e2e8f0',
+                    maxWidth: '500px',
+                    width: '100%',
+                    boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)',
+                    textAlign: 'center'
+                }}>
+                    <span style={{ fontSize: '3rem', display: 'block', marginBottom: '10px' }}>🚀</span>
+                    <h2 style={{ fontSize: '2.2rem', fontWeight: '800', color: '#0f172a', marginBottom: '10px' }}>Coming Soon!</h2>
+                    <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: '1.5', marginBottom: '30px' }}>
+                        The comprehensive curriculum for <strong>{course.title}</strong> is currently under development. Enter your details below to get notified the moment it launches!
+                    </p>
+
+                    <form onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
+                        <div style={{ marginBottom: '20px' }}>
+                            <label htmlFor="name" style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.95rem' }}>Full Name</label>
+                            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                                <i className="fa-solid fa-user" style={{ position: 'absolute', left: '15px', color: '#94a3b8' }}></i>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your name"
+                                    required
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    style={{ width: '100%', padding: '14px 15px 14px 45px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '1rem', background: '#f8fafc', color: '#0f172a', transition: 'all 0.3s ease' }}
+                                    onFocus={(e) => { e.target.style.borderColor = '#ea580c'; e.target.style.background = '#ffffff'; }}
+                                    onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; }}
+                                />
+                            </div>
+                        </div>
+
+                        <div style={{ marginBottom: '20px' }}>
+                            <label htmlFor="email" style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.95rem' }}>Email Address</label>
+                            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                                <i className="fa-solid fa-envelope" style={{ position: 'absolute', left: '15px', color: '#94a3b8' }}></i>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    style={{ width: '100%', padding: '14px 15px 14px 45px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '1rem', background: '#f8fafc', color: '#0f172a', transition: 'all 0.3s ease' }}
+                                    onFocus={(e) => { e.target.style.borderColor = '#ea580c'; e.target.style.background = '#ffffff'; }}
+                                    onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; }}
+                                />
+                            </div>
+                        </div>
+
+                        <div style={{ marginBottom: '25px' }}>
+                            <label htmlFor="mobileNo" style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.95rem' }}>Phone Number</label>
+                            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                                <i className="fa-solid fa-phone" style={{ position: 'absolute', left: '15px', color: '#94a3b8' }}></i>
+                                <input
+                                    type="tel"
+                                    id="mobileNo"
+                                    placeholder="Enter your Mobile No."
+                                    required
+                                    pattern="[0-9]{10}"
+                                    value={formData.mobileNo}
+                                    onChange={handleChange}
+                                    style={{ width: '100%', padding: '14px 15px 14px 45px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '1rem', background: '#f8fafc', color: '#0f172a', transition: 'all 0.3s ease' }}
+                                    onFocus={(e) => { e.target.style.borderColor = '#ea580c'; e.target.style.background = '#ffffff'; }}
+                                    onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; }}
+                                />
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={status === 'loading' || status === 'success'}
+                            style={{
+                                width: '100%', padding: '15px', borderRadius: '12px', background: status === 'success' ? '#22c55e' : '#ea580c', color: '#ffffff', fontWeight: '700', fontSize: '1.1rem', border: 'none', cursor: status === 'loading' || status === 'success' ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', transition: 'all 0.3s ease', opacity: status === 'loading' ? 0.7 : 1
+                            }}
+                            onMouseEnter={(e) => {
+                                if (status !== 'loading' && status !== 'success') {
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                    e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(234, 88, 12, 0.3)';
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = 'none';
+                            }}
+                        >
+                            {status === 'loading' ? (
+                                <><i className="fa-solid fa-spinner fa-spin"></i> Submitting...</>
+                            ) : status === 'success' ? (
+                                <><i className="fa-solid fa-check"></i> We'll be in touch!</>
+                            ) : (
+                                <>Notify Me <i className="fa-solid fa-bell"></i></>
+                            )}
+                        </button>
+
+                        {status === 'error' && (
+                            <p style={{ color: '#ef4444', marginTop: '15px', fontSize: '0.9rem', textAlign: 'center' }}>
+                                Oops! Something went wrong. Please try again.
+                            </p>
+                        )}
+
+                        {/* <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                            <Link to="/" style={{ color: '#64748b', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                                <i className="fa-solid fa-arrow-left"></i> Back to Home
+                            </Link>
+                        </div> */}
+                    </form>
+                </div>
             </div>
         );
     }

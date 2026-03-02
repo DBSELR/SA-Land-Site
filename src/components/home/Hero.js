@@ -51,9 +51,24 @@ const Hero = () => {
     const [index, setIndex] = useState(0);
     const navigate = useNavigate();
 
-    // Filter courses directly here so we don't delete data
-    const allowedCourses = ["Graphic Designing", "Digital Marketing"];
-    const visibleCourses = coursesData.filter(c => allowedCourses.includes(c.title));
+    // Show all courses in the hero slider, but prioritize Graphic Designing and Digital Marketing
+    const prioritizedCourses = ["Graphic Designing", "Digital Marketing"];
+
+    // Create a new array sorted with prioritized courses first
+    const visibleCourses = [...coursesData].sort((a, b) => {
+        const aIndex = prioritizedCourses.indexOf(a.title);
+        const bIndex = prioritizedCourses.indexOf(b.title);
+
+        // If both are in priority list, sort by their order in the priority list
+        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+        // If only 'a' is in priority list, it comes first
+        if (aIndex !== -1) return -1;
+        // If only 'b' is in priority list, it comes first
+        if (bIndex !== -1) return 1;
+
+        // If neither is in priority list, maintain their original relative order
+        return 0;
+    });
 
     useEffect(() => {
         const timer = setInterval(() => {

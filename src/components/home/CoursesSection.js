@@ -36,16 +36,11 @@ const CoursesSection = () => {
     }, []);
 
     const recommendedTitles = [
-        "Medical Coding",
         "Graphic Designing",
-        "Digital Marketing",
-        "Accounts & Tally",
-        "Cyber Security"
+        "Digital Marketing"
     ];
 
-    const allowedCourses = ["Graphic Designing", "Digital Marketing"];
-    const visibleCourses = coursesData.filter(course => allowedCourses.includes(course.title));
-
+    const visibleCourses = coursesData;
     const filteredCourses = activeTab === "Recommended"
         ? visibleCourses
             .filter(course => recommendedTitles.includes(course.title))
@@ -210,8 +205,16 @@ const CoursesSection = () => {
                                             }
                                         }}
                                     >
-                                        Explore Course
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                        {["Graphic Designing", "Digital Marketing"].includes(course.title) ? (
+                                            <>
+                                                Explore Course
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                            </>
+                                        ) : (
+                                            <>
+                                                Notify Me <i className="fa-solid fa-bell" style={{ marginLeft: "4px" }}></i>
+                                            </>
+                                        )}
                                     </span>
                                 </div>
                             </div>
