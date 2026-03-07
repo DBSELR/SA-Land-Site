@@ -87,14 +87,14 @@ body {
     transition: color 0.2s ease;
 }
 
-.nav-links a:not(.nav-cta-btn):hover,
+.nav-links a:not(.nav-cta-btn):not(.nav-demo-btn):hover,
 .nav-links a.active {
     color: #ea580c;
     /* Brand Orange */
 }
 
 /* Underline Animation */
-.nav-links a:not(.nav-cta-btn)::after {
+.nav-links a:not(.nav-cta-btn):not(.nav-demo-btn)::after {
     content: '';
     position: absolute;
     width: 0;
@@ -105,7 +105,7 @@ body {
     transition: width 0.3s ease;
 }
 
-.nav-links a:not(.nav-cta-btn):hover::after,
+.nav-links a:not(.nav-cta-btn):not(.nav-demo-btn):hover::after,
 .nav-links a.active::after {
     width: 100%;
 }
@@ -114,7 +114,7 @@ body {
 .nav-links .nav-cta-btn {
     padding: 0.6rem 1.5rem;
     background-color: #ea580c;
-    color: #fff;
+    color: #fff !important;
     border-radius: 50px;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease;
@@ -124,12 +124,41 @@ body {
     background-color: #c2410c;
     /* Darker Orange */
     transform: translateY(-1px);
-    color: #fff;
+    color: #fff !important;
 }
 
 /* Remove underline for CTA */
 .nav-links .nav-cta-btn::after {
     display: none;
+}
+
+/* Demo Button Style */
+.nav-links .nav-demo-btn {
+    padding: 0.6rem 1.5rem;
+    background-color: transparent;
+    color: #ea580c !important;
+    border: 1.5px solid #ea580c;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.nav-links .nav-demo-btn:hover {
+    background-color: #fff;
+    color: #0f172a !important;
+    border: 1.5px solid #0f172a;
+    transform: translateY(-1px);
+}
+
+.nav-links .nav-demo-btn::after {
+    display: none !important;
+}
+
+/* Button Group Alignment */
+.nav-buttons-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 /* DROPDOWN */
@@ -351,12 +380,20 @@ body {
     .nav-links a:hover {
         color: #ea580c;
         transform: scale(1.05);
-        /* Subtle scale on hover */
         background: transparent;
     }
 
+    .nav-buttons-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+        margin-top: 15px;
+    }
+
     .nav-links .nav-cta-btn {
-        margin-top: 30px;
+        margin-top: 0;
         font-size: 1.25rem;
         padding: 1.2rem 3.5rem;
         box-shadow: 0 20px 40px rgba(234, 88, 12, 0.3);
@@ -369,6 +406,24 @@ body {
         transform: translateY(0);
         transition-delay: 0.35s;
         /* Last element to enter */
+    }
+
+    .nav-links .nav-demo-btn {
+        margin-top: 0;
+        font-size: 1.25rem;
+        padding: 1.2rem 3.5rem;
+        border: 2px solid #ea580c;
+        background-color: transparent;
+        color: #ea580c !important;
+        opacity: 0;
+        border-radius: 50px;
+        transform: translateY(30px);
+    }
+
+    .nav-links.open .nav-demo-btn {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.35s;
     }
 
     .dropdown {
@@ -1436,13 +1491,12 @@ body {
     color: #0f172a;
     margin-bottom: 8px;
     line-height: 1.35;
-    min-height: 3.1rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    padding-left: 10px;
+    padding-left: 2px;
     /* Space for the border */
     border-left: 3px solid transparent;
     /* Invisible by default or subtle color */
@@ -1610,6 +1664,24 @@ body {
     .gk-courses-grid {
         grid-template-columns: repeat(2, 1fr);
         /* Try 2 columns on mobile if they fit, or 1 */
+    }
+
+    /* Better Tab Alignment on Mobile */
+    .gk-tabs-container {
+        gap: 8px;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+
+    .gk-tab-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        flex: 1 1 auto;
+        /* Allow buttons to grow slightly to fill space evenly */
+        text-align: center;
+        justify-content: center;
+        white-space: nowrap;
+        /* Keep text on one line */
     }
 }
 
@@ -2108,7 +2180,7 @@ body {
     gap: 2rem;
     max-width: 900px;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .gk-link-group ul {

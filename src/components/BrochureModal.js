@@ -19,10 +19,12 @@ const BrochureModal = ({ isOpen, courseTitle, onDownload, onClose }) => {
         setStatus('loading');
 
         // Map form state to API expected keys
+        const formattedMobile = formData.mobile.startsWith('+') ? `'${formData.mobile}` : `'+91 ${formData.mobile}`;
+
         const payload = {
             name: formData.name,
             email: formData.email,
-            mobileNo: formData.mobile,
+            mobileNo: formattedMobile,
             course: courseTitle,
             Source: 'Website' // Added for consistency with validation rules if any
         };

@@ -179,7 +179,47 @@ const CoursesSection = () => {
                                     <span className="gk-price-original">{course.originalPrice}</span>
                                 </div> */}
 
-                                <div className="gk-price-row">
+                                <div style={{ display: 'flex', gap: '8px', width: '100%', flexDirection: 'column' }}>
+                                    {["Graphic Designing", "Digital Marketing"].includes(course.title) ? (
+                                        <Link
+                                            to="/calendly-demo"
+                                            className="gk-explore-btn"
+                                            style={{
+                                                textDecoration: 'none',
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '8px',
+                                                background: '#ea580c',
+                                                color: '#fff',
+                                                borderColor: '#ea580c'
+                                            }}
+                                        >
+                                            Book a Demo
+                                            <i className="fa-regular fa-calendar-check" style={{ marginLeft: "4px" }}></i>
+                                        </Link>
+                                    ) : (
+                                        <button
+                                            className="gk-explore-btn"
+                                            disabled
+                                            style={{
+                                                textDecoration: 'none',
+                                                cursor: 'not-allowed',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '8px',
+                                                background: '#f1f5f9',
+                                                color: '#94a3b8',
+                                                borderColor: '#e2e8f0'
+                                            }}
+                                        >
+                                            Coming Soon
+                                            <i className="fa-regular fa-clock" style={{ marginLeft: "4px" }}></i>
+                                        </button>
+                                    )}
+
                                     <span
                                         className="gk-explore-btn"
                                         style={{ textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}

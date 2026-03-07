@@ -123,11 +123,11 @@ const Hero = () => {
                         <button
                             className="btn-secondary"
                             onClick={() => {
-                                navigate("/book-demo");
+                                navigate("/calendly-demo");
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <span>Book A Demo</span> <i className="fa-solid fa-calendar-check"></i>
+                            <span>Book a Demo</span> <i className="fa-solid fa-calendar-check"></i>
                         </button>
                     </div>
                 </div>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+// REPLACE THIS WITH YOUR NEW DEPLOYED REGISTRATION GOOGLE APPS SCRIPT WEB APP URL
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhAXGXnRayH2xuq4letZMQqqHKN4J3JQnIOrFY5k8p99D0X9hw_UssEuUvDMgv6PV4/exec";
+
 const RegistrationPage = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -125,6 +128,22 @@ const RegistrationPage = () => {
         }
     };
 
+    const submitToGoogleSheets = async (data) => {
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+                body: JSON.stringify(data),
+            });
+            console.log("Submitted Registration Lead to Google Sheets");
+        } catch (error) {
+            console.error("Error submitting Registration Lead to Google Sheets:", error);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (dummyPaying) return;
@@ -157,6 +176,18 @@ const RegistrationPage = () => {
             };
 
             console.log("🚀 Registration payload:", registrationPayload);
+
+            // Send to Google Sheets (Fire and forget)
+            const formattedMobile = formData.phone.startsWith('+') ? `'${formData.phone}` : `'+91 ${formData.phone}`;
+            const sheetPayload = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                mobileNo: formattedMobile,
+                course: formData.course,
+                Source: 'Registration Page'
+            };
+            submitToGoogleSheets(sheetPayload);
 
             const registrationRes = await fetch(
                 "https://api.skillascent.in/api/student/Landingregister",

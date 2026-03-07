@@ -24,7 +24,8 @@ const ContactUsPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('loading');
-        const payload = { ...formData, Source: 'Website' };
+        const formattedMobile = formData.mobileNo.startsWith('+') ? `'${formData.mobileNo}` : `'+91 ${formData.mobileNo}`;
+        const payload = { ...formData, mobileNo: formattedMobile, Source: 'Website' };
         console.log("Sending Payload:", payload); // Debugging log
 
         // Send to Google Sheets (Fire and forget)

@@ -77,8 +77,8 @@ const Footer = () => {
                     <div className="gk-link-group">
                         <h4 className="gk-link-header">Company</h4>
                         <ul>
-                            <li><a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection("about"); }}>About Us</a></li>
-                            <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}>Contact Us</a></li>
+                            <li><Link to="/about" onClick={() => window.scrollTo(0, 0)}>About Us</Link></li>
+                            <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)}>Contact Us</Link></li>
                         </ul>
                     </div>
 

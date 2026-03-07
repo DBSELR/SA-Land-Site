@@ -64,7 +64,8 @@ const BookDemoPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('loading');
-        const payload = { ...formData, Source: 'Book Demo Page' };
+        const formattedMobile = formData.mobileNo.startsWith('+') ? `'${formData.mobileNo}` : `'+91 ${formData.mobileNo}`;
+        const payload = { ...formData, mobileNo: formattedMobile, Source: 'Book Demo Page' };
 
         try {
             await fetch(GOOGLE_SCRIPT_URL, {

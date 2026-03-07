@@ -40,6 +40,18 @@ const CourseDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // Dynamically load Calendly script
+        const script = document.createElement('script');
+        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            if (document.body.contains(script)) {
+                document.body.removeChild(script);
+            }
+        };
     }, [id]);
 
     if (!course) {
@@ -63,8 +75,9 @@ const CourseDetail = () => {
             e.preventDefault();
             setStatus('loading');
 
-            // Append course title to the payload
-            const payload = { ...formData, course: course.title };
+            // Append course title to the payload and prepend country code with a single quote for Google Sheets
+            const formattedMobile = formData.mobileNo.startsWith('+') ? `'${formData.mobileNo}` : `'+91 ${formData.mobileNo}`;
+            const payload = { ...formData, mobileNo: formattedMobile, course: course.title };
 
             try {
                 await fetch(GOOGLE_SCRIPT_URL, {
@@ -379,21 +392,87 @@ const CourseDetail = () => {
                             )}
                         </div>
 
-                        <Link to="/register" className="gk-explore-btn" style={{
-                            background: themeColor,
-                            color: '#fff',
-                            border: 'none',
-                            marginBottom: '15px',
-                            width: '100%',
-                            justifyContent: 'center',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px'
-                        }}>
-                            Enroll Now
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                        </Link>
+                        {(() => {
+                            const calendlyUrls = {
+                                "Digital Marketing": "https://calendly.com/digitalmarketing-skillascent/skill-ascent-digital-marketing?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&primary_color=ea580c",
+                                "Graphic Designing": "https://calendly.com/digitalmarketing-skillascent/graphic-designing-demo?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&primary_color=ea580c"
+                            };
+                            const specificCalendlyUrl = calendlyUrls[course.title];
+
+                            if (specificCalendlyUrl) {
+                                return (
+                                    <>
+                                        <button
+                                            className="gk-explore-btn"
+                                            onClick={() => {
+                                                const section = document.getElementById('demo-section');
+                                                if (section) {
+                                                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                }
+                                            }}
+                                            style={{
+                                                background: themeColor,
+                                                color: '#fff',
+                                                border: 'none',
+                                                marginBottom: '15px',
+                                                width: '100%',
+                                                justifyContent: 'center',
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '10px'
+                                            }}
+                                        >
+                                            Book Your Free Demo
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        </button>
+                                        <Link to="/register" className="gk-explore-btn" style={{
+                                            background: '#fff',
+                                            color: themeColor,
+                                            border: `2px solid ${themeColor}`,
+                                            marginBottom: '15px',
+                                            width: '100%',
+                                            justifyContent: 'center',
+                                            textDecoration: 'none',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '10px',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.background = themeColor;
+                                                e.currentTarget.style.color = '#fff';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.background = '#fff';
+                                                e.currentTarget.style.color = themeColor;
+                                            }}
+                                        >
+                                            Enroll Now
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                        </Link>
+                                    </>
+                                );
+                            }
+
+                            return (
+                                <Link to="/register" className="gk-explore-btn" style={{
+                                    background: themeColor,
+                                    color: '#fff',
+                                    border: 'none',
+                                    marginBottom: '15px',
+                                    width: '100%',
+                                    justifyContent: 'center',
+                                    textDecoration: 'none',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '10px'
+                                }}>
+                                    Enroll Now
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </Link>
+                            );
+                        })()}
 
                         <button
                             className="gk-explore-btn"
@@ -403,7 +482,8 @@ const CourseDetail = () => {
                                 color: '#0f172a',
                                 border: '2px solid #e2e8f0',
                                 width: '100%',
-                                justifyContent: 'center'
+                                justifyContent: 'center',
+                                cursor: 'pointer'
                             }}
                         >
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -412,6 +492,47 @@ const CourseDetail = () => {
                     </div>
                 </div>
             </section>
+
+            {(() => {
+                const calendlyUrls = {
+                    "Digital Marketing": "https://calendly.com/digitalmarketing-skillascent/skill-ascent-digital-marketing?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&primary_color=ea580c",
+                    "Graphic Designing": "https://calendly.com/digitalmarketing-skillascent/graphic-designing-demo?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&primary_color=ea580c"
+                };
+                const specificCalendlyUrl = calendlyUrls[course.title];
+
+                if (specificCalendlyUrl) {
+                    return (
+                        <section id="demo-section" style={{ padding: '40px 20px', background: `${themeColor}08` }}>
+                            <div className="gk-container">
+                                <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+                                    <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0f172a', marginBottom: '10px' }}>
+                                        Book Your <span style={{ color: themeColor }}>Free Demo</span>
+                                    </h2>
+                                    <p style={{ fontSize: '1.1rem', color: '#64748b' }}>
+                                        Check our availability and schedule a live session with our experts.
+                                    </p>
+                                </div>
+                                <div style={{
+                                    maxWidth: '650px',
+                                    margin: '0 auto',
+                                    background: '#ffffff',
+                                    borderRadius: '24px',
+                                    padding: '20px',
+                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)',
+                                    border: `1px solid ${themeColor}30`
+                                }}>
+                                    <div
+                                        className="calendly-inline-widget"
+                                        data-url={specificCalendlyUrl}
+                                        style={{ minWidth: '320px', height: '650px' }}
+                                    ></div>
+                                </div>
+                            </div>
+                        </section>
+                    );
+                }
+                return null;
+            })()}
 
             <BrochureModal
                 isOpen={showModal}

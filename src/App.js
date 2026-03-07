@@ -1,3 +1,4 @@
+import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -12,6 +13,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CourseDetail from "./pages/CourseDetail";
 import PaymentResult from "./pages/PaymentResult";
 import BookDemoPage from "./pages/BookDemoPage";
+import CalendlyDemoPage from "./pages/CalendlyDemoPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
@@ -38,6 +40,7 @@ function App() {
 
           <Route path="/payment-result" element={<PaymentResult />} />
           <Route path="/book-demo" element={<BookDemoPage />} />
+          <Route path="/calendly-demo" element={<CalendlyDemoPage />} />
 
         </Routes>
       </main>

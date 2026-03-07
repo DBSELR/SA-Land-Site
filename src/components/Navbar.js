@@ -66,7 +66,10 @@ const Navbar = () => {
                     <a href="#courses" onClick={(e) => handleNavClick("courses", e)} className={activeTab === "courses" ? "active" : ""}>Learn</a>
                     <Link to="/about" onClick={() => handleNavClick("about")} className={activeTab === "about" ? "active" : ""}>About</Link>
                     <Link to="/contact" onClick={() => handleNavClick("contact")} className={activeTab === "contact" ? "active" : ""}>Contact</Link>
-                    <a href="/register" onClick={handleRegisterClick} className="nav-cta-btn">Register</a>
+                    <div className="nav-buttons-group">
+                        <Link to="/calendly-demo" onClick={(e) => { setMenuOpen(false); window.scrollTo(0, 0); }} className="nav-demo-btn">Book a Demo</Link>
+                        <a href="/register" onClick={handleRegisterClick} className="nav-cta-btn">Register</a>
+                    </div>
                 </nav>
 
                 {/* Mobile Toggle */}
